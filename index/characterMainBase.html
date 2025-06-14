@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewpoint" content="with=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/styleCharacterMainBase.css">
+    <link rel="stylesheet" href="../wwwroot/css/CharacterPage.css">
     <title>Origins New Horizons | [Nome do player]</title>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -16,20 +16,40 @@
         <button>Combate</button>
     </nav>
 
-    <div class="player-panel">
-        <div class="player-image">
-            <input class="user-img" type="image" src="../static/images/plusv2.png" alt="Submit">
-        </div>
-        <div class="player-info">
-            <input class="player-class" type="image" src="../static/images/dpsIcon.png">
-            <p>
-                Nome: <br>
-                Level: 00
-            </p>
-        </div>
+    <div class="transform-info">
+        <nav class="left-nav">
+            <button class="left-buttons">Padrão</button>
+            <button class="left-buttons">Transformado</button>
+
+        </nav>
+        <nav class="right-nav">
+            <button class="right-buttons">Especialidades</button>
+            <button class="right-buttons">Combate</button>
+            <button class="right-buttons">Status</button>
+            <button class="right-buttons">Habilidades</button>
+            <button class="right-buttons">Informações</button>
+        </nav>
     </div>
 
+    <div class="panels">
+        <div class="player-panel">
+            <div class="player-image">
+                <input class="user-img" type="image" src="../wwwroot/images/plusv2.png" alt="Submit">
+            </div>
+            <div class="player-info">
+                <input class="player-class" type="image" src="../wwwroot/images/dpsIcon.png">
+                <p>
+                    Nome: <br>
+                    Level: <br>
+                    Mentor: <br>
+                </p>
+            </div>
+        </div>
 
+        <div class="player-status">
+
+        </div>
+    </div>
 </body>
 
 </html>
