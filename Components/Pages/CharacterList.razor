@@ -1,7 +1,20 @@
 @page "/characterList"
+@rendermode InteractiveServer
+@using Database
+@inject HttpClient Http
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
+@code
+{
+    List<Character>? Models = new();
+    protected override async Task OnInitializedAsync()
+    {
+
+        Models = await Http.GetFromJsonAsync<List<Character>>("http://localhost:5003/api/home/getAllCharacters");
+    }
+}
 
 <head>
     <meta charset="UTF-8">
@@ -120,15 +133,18 @@
     </div>
 
     <div id="sheets">
-        <div class="sheetContainer">
-            <img class="userImg" src="../images/Sample_User_Icon.png">
-            <p>
-                Nome: <br>
-                Level: 00
-            </p>
+        @foreach (var Model in Models)
+        {
+            <div class="sheetContainer">
+                <img class="userImg" src="../images/Sample_User_Icon.png">
+                <p>
+                    Nome: @Model.Name <br>
+                    Level: @Model.Level
+                </p>
 
-            <button id="editButton">Editar</button>
-        </div>
+                <button id="editButton">Editar</button>
+            </div>
+        }
     </div>
 </body>
 

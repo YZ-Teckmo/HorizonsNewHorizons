@@ -24,4 +24,13 @@ public class HomeController : Controller
             return context.Characters.Where(x => x.Id == 1).Select(x => x).Single();
         }
     }
+
+    [HttpGet("getAllCharacters")]
+    public List<Character> GetAllCharacters()
+    {
+        using (var context = new DatabaseContext())
+        {
+            return context.Characters.Where(x => x == x).Select(x => x).ToList();
+        }
+    }
 }
