@@ -1,3 +1,5 @@
+@model Database.Character
+
 <!DOCTYPE html>
 
 <head>
@@ -5,9 +7,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewpoint" content="with=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/CharacterPage.css">
-    <title>Origins New Horizons | [Nome do player]</title>
+    <title>Origins New Horizons | @Model.Name</title>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
+
+<script>
+    window.onload = function (){
+    document.getElementById("SplDiv").style.display = "flex"
+    document.getElementById("CombatDiv").style.display = "none"
+    document.getElementById("StatsDiv").style.display = "none"
+    document.getElementById("HabDiv").style.display = "none"
+    document.getElementById("InformationDiv").style.display = "none"
+    }
+
+    function SplTab (){
+        document.getElementById("SplDiv").style.display = "flex"
+        document.getElementById("CombatDiv").style.display = "none"
+        document.getElementById("StatsDiv").style.display = "none"
+        document.getElementById("HabDiv").style.display = "none"
+        document.getElementById("InformationDiv").style.display = "none"
+    }
+    function CombatTab (){
+        document.getElementById("SplDiv").style.display = "none"
+        document.getElementById("CombatDiv").style.display = "flex"
+        document.getElementById("StatsDiv").style.display = "none"
+        document.getElementById("HabDiv").style.display = "none"
+        document.getElementById("InformationDiv").style.display = "none"
+    }
+    function StatsTab (){
+        document.getElementById("SplDiv").style.display = "none"
+        document.getElementById("CombatDiv").style.display = "none"
+        document.getElementById("StatsDiv").style.display = "flex"
+        document.getElementById("HabDiv").style.display = "none"
+        document.getElementById("InformationDiv").style.display = "none"
+    }
+    function HabTab (){
+        document.getElementById("SplDiv").style.display = "none"
+        document.getElementById("CombatDiv").style.display = "none"
+        document.getElementById("StatsDiv").style.display = "none"
+        document.getElementById("HabDiv").style.display = "flex"
+        document.getElementById("InformationDiv").style.display = "none"
+    }
+    function InfoTab (){
+        document.getElementById("SplDiv").style.display = "none"
+        document.getElementById("CombatDiv").style.display = "none"
+        document.getElementById("StatsDiv").style.display = "none"
+        document.getElementById("HabDiv").style.display = "none"
+        document.getElementById("InformationDiv").style.display = "flex"
+    }
+
+</script>
 
 <body>
     <nav>
@@ -23,11 +72,11 @@
 
         </nav>
         <nav class="right-nav">
-            <button class="right-buttons">Especialidades</button>
-            <button class="right-buttons">Combate</button>
-            <button class="right-buttons">Status</button>
-            <button class="right-buttons">Habilidades</button>
-            <button class="right-buttons">Informações</button>
+            <button onclick="SplTab()">Especialidades</button>
+            <button onclick="CombatTab()">Combate</button>
+            <button onclick="StatsTab()">Status</button>
+            <button onclick="HabTab()">Habilidades</button>
+            <button onclick="InfoTab()">Informações</button>
         </nav>
     </div>
 
@@ -39,15 +88,78 @@
             <div class="player-info">
                 <input class="player-class" type="image" src="../images/dpsIcon.png">
                 <p>
-                    Nome: <br>
-                    Level: <br>
-                    Mentor: <br>
+                    Nome: @Model.Name <br>
+                    Level: @Model.Level<br>
+                    Mentor: @Model.Mentor<br>
                 </p>
             </div>
         </div>
 
         <div class="player-status">
 
+            <div id="SplDiv">
+                Força: @Model.Strength<br>
+                Destreza: @Model.Dexterity <br>
+                Inteligencia: @Model.Inteligency <br>
+                Energia: @Model.EnergyModifier <br>
+                Carisma: @Model.Charisma <br>
+                Vontade: @Model.Will <br>
+                Sorte: @Model.Lucky <br>
+                Afinidade: @Model.Afinnity <br>
+            </div>
+
+            <div id="CombatDiv">
+            Ataque: @{@Html.Raw(Model.Strength + Model.Dexterity);} <br>
+            Ataque Especial: <br>
+            Defesa: @Model.Strength (@{@Html.Raw(Model.Strength*10);}) <br>
+            Velocidade: @Model.Dexterity <br>
+            Efeito Negativo: 
+            @if (@Model.SubClass1 == "Debuffer" || @Model.SubClass2 == "Debuffer"){
+                @Html.Raw(@Model.EnergyModifier);
+            }
+
+            <br>
+            
+            Efeito Positivo: 
+            @if (@Model.SubClass1 == "Buffer" || @Model.SubClass2 == "Buffer"){
+                @Html.Raw(@Model.EnergyModifier);
+            }
+
+            <br>
+            Resistencia: @Model.Will <br>
+            </div>
+
+            <div id="StatsDiv">
+                Stats
+            </div>
+
+            <div id="HabDiv">
+                HABILITIES
+            </div>
+
+            <div id="InformationDiv">
+                <div id="InfoDiv">
+                    <input class="Info" placeholder="Descreva a aparencia do seu personagem aqui" value="@Model.Apperence"/>
+                </div>
+
+                <div id="InfoDiv">
+                    <input class="Info" placeholder="Descreva a personalidade do seu personagem aqui" value="@Model.Personality"/>
+                </div>
+
+                <div id="InfoDiv">
+                    <input class="Info" placeholder="Escreva suas anotações aqui" value="@Model.Notes"/>
+                </div>
+
+                <div id="InfoDiv">
+                    <input class="Info" placeholder="Descreva a Lore do seu personagem aqui" value="@Model.Lore"/>
+                </div>
+
+                <div id="InfoDiv">
+                    <input class="Info" placeholder="Descreva as curiosidades do seu personagem aqui" value="@Model.Curiosity"/>
+                </div>
+
+            </div>
+            
         </div>
     </div>
 </body>

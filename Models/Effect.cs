@@ -1,6 +1,6 @@
 namespace Database;
 
-public class Item
+public class Effect
 {
     public int Id { get; set; }
     public string? Name { get; set; }
