@@ -11,44 +11,50 @@
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<script>
-    window.onload = function (){
-    document.getElementById("SplDiv").style.display = "flex"
-    document.getElementById("CombatDiv").style.display = "none"
-    document.getElementById("StatsDiv").style.display = "none"
-    document.getElementById("HabDiv").style.display = "none"
-    document.getElementById("InformationDiv").style.display = "none"
+<style>   
+    :root {
+        --playerColor: @Model.PlayerColor;
     }
+</style>
 
-    function SplTab (){
+<script>
+    window.onload = function () {
         document.getElementById("SplDiv").style.display = "flex"
         document.getElementById("CombatDiv").style.display = "none"
         document.getElementById("StatsDiv").style.display = "none"
         document.getElementById("HabDiv").style.display = "none"
         document.getElementById("InformationDiv").style.display = "none"
     }
-    function CombatTab (){
+
+    function SplTab() {
+        document.getElementById("SplDiv").style.display = "flex"
+        document.getElementById("CombatDiv").style.display = "none"
+        document.getElementById("StatsDiv").style.display = "none"
+        document.getElementById("HabDiv").style.display = "none"
+        document.getElementById("InformationDiv").style.display = "none"
+    }
+    function CombatTab() {
         document.getElementById("SplDiv").style.display = "none"
         document.getElementById("CombatDiv").style.display = "flex"
         document.getElementById("StatsDiv").style.display = "none"
         document.getElementById("HabDiv").style.display = "none"
         document.getElementById("InformationDiv").style.display = "none"
     }
-    function StatsTab (){
+    function StatsTab() {
         document.getElementById("SplDiv").style.display = "none"
         document.getElementById("CombatDiv").style.display = "none"
         document.getElementById("StatsDiv").style.display = "flex"
         document.getElementById("HabDiv").style.display = "none"
         document.getElementById("InformationDiv").style.display = "none"
     }
-    function HabTab (){
+    function HabTab() {
         document.getElementById("SplDiv").style.display = "none"
         document.getElementById("CombatDiv").style.display = "none"
         document.getElementById("StatsDiv").style.display = "none"
         document.getElementById("HabDiv").style.display = "flex"
         document.getElementById("InformationDiv").style.display = "none"
     }
-    function InfoTab (){
+    function InfoTab() {
         document.getElementById("SplDiv").style.display = "none"
         document.getElementById("CombatDiv").style.display = "none"
         document.getElementById("StatsDiv").style.display = "none"
@@ -109,24 +115,40 @@
             </div>
 
             <div id="CombatDiv">
-            Ataque: @{@Html.Raw(Model.Strength + Model.Dexterity);} <br>
-            Ataque Especial: <br>
-            Defesa: @Model.Strength (@{@Html.Raw(Model.Strength*10);}) <br>
-            Velocidade: @Model.Dexterity <br>
-            Efeito Negativo: 
-            @if (@Model.SubClass1 == "Debuffer" || @Model.SubClass2 == "Debuffer"){
-                @Html.Raw(@Model.EnergyModifier);
-            }
+                Ataque: @{
+                
+                @Html.Raw(Model.Strength + Model.Dexterity)
+                ;
+                
+}
+ <br>
+                Ataque Especial: <br>
+                Defesa: @Model.Strength (@{
+                
+                @Html.Raw(Model.Strength * 10)
+                                ;
+                
+}
+) <br>
+                Velocidade: @Model.Dexterity <br>
+                Efeito Negativo:
+                @if (@Model.SubClass1 == "Debuffer" || @Model.SubClass2 == "Debuffer")
+                {
+                    @Html.Raw(@Model.EnergyModifier)
+                    ;
+                }
 
-            <br>
-            
-            Efeito Positivo: 
-            @if (@Model.SubClass1 == "Buffer" || @Model.SubClass2 == "Buffer"){
-                @Html.Raw(@Model.EnergyModifier);
-            }
+                <br>
 
-            <br>
-            Resistencia: @Model.Will <br>
+                Efeito Positivo:
+                @if (@Model.SubClass1 == "Buffer" || @Model.SubClass2 == "Buffer")
+                {
+                    @Html.Raw(@Model.EnergyModifier)
+                    ;
+                }
+
+                <br>
+                Resistencia: @Model.Will <br>
             </div>
 
             <div id="StatsDiv">
@@ -139,27 +161,29 @@
 
             <div id="InformationDiv">
                 <div id="InfoDiv">
-                    <input class="Info" placeholder="Descreva a aparencia do seu personagem aqui" value="@Model.Apperence"/>
+                    <input class="Info" placeholder="Descreva a aparencia do seu personagem aqui"
+                        value="@Model.Apperence" />
                 </div>
 
                 <div id="InfoDiv">
-                    <input class="Info" placeholder="Descreva a personalidade do seu personagem aqui" value="@Model.Personality"/>
+                    <input class="Info" placeholder="Descreva a personalidade do seu personagem aqui"
+                        value="@Model.Personality" />
                 </div>
 
                 <div id="InfoDiv">
-                    <input class="Info" placeholder="Escreva suas anotações aqui" value="@Model.Notes"/>
+                    <input class="Info" placeholder="Escreva suas anotações aqui" value="@Model.Notes" />
                 </div>
 
                 <div id="InfoDiv">
-                    <input class="Info" placeholder="Descreva a Lore do seu personagem aqui" value="@Model.Lore"/>
+                    <input class="Info" placeholder="Descreva a Lore do seu personagem aqui" value="@Model.Lore" />
                 </div>
 
                 <div id="InfoDiv">
-                    <input class="Info" placeholder="Descreva as curiosidades do seu personagem aqui" value="@Model.Curiosity"/>
+                    <input class="Info" placeholder="Descreva as curiosidades do seu personagem aqui"
+                        value="@Model.Curiosity" />
                 </div>
-
             </div>
-            
+
         </div>
     </div>
 </body>
