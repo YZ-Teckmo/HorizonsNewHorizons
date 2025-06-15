@@ -8,8 +8,8 @@ public class Character
     public string? Name { get; set; }
     public int? Level { get; set; }
     public string? Mentor { get; set; }
-    public byte?[] CharacterPortrait { get; set; }
-    public byte?[] TransformedPortrait { get; set; }
+    public List<byte>? CharacterPortrait { get; set; }
+    public List<byte>? TransformedPortrait { get; set; }
     public string? Class { get; set; }
     public string? SubClass1 { get; set; }
     public string? SubClass2 { get; set; }

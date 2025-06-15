@@ -28,7 +28,7 @@ public class HomeController : Controller
     {
         using (var context = new DatabaseContext())
         {
-            var ViewPlayer = GetCharacterData(context);
+            var ViewPlayer = context.Characters.Where(x => x.Id == 1).Select(x => x).Single();
             return View(ViewPlayer);
         }
     }
@@ -44,7 +44,8 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 
-    public Character GetCharacterData(DatabaseContext context)
+    //Explosão Cataclisma - In Memorium: Deyvid Santos
+    /*public Character GetCharacterData(DatabaseContext context)
     {
         Character PlayerChar = new Character();
 
@@ -81,5 +82,5 @@ public class HomeController : Controller
         PlayerChar.Curiosity = context.Characters.Where(x => x.Id == 1).Select(x => x.Curiosity).Single();
 
         return PlayerChar;
-    }
+    }*/
 }
