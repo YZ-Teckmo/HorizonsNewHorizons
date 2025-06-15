@@ -23,14 +23,14 @@ nav {
     justify-content: center;
     border-radius: 5px;
     margin: 10px;
-    border: 4px solid rgba(255, 0, 0, 0.2);
+    border: 4px solid var(--playerColor);
     backdrop-filter: blur(20px);
 }
 
 button {
     background: #fff;
     color: white;
-    border: 3px solid rgba(255, 0, 0, 0.5);
+    border: 3px solid var(--playerColor);
     border-radius: 40px;
     padding: 10px;
     margin: 10px;
@@ -52,7 +52,7 @@ button {
     border-radius: 5px;
     margin: 10px;
     margin-top: 0px;
-    border: 4px solid rgba(255, 0, 0, 0.2);
+    border: 4px solid var(--playerColor);
     backdrop-filter: blur(20px);
 }
 
@@ -66,7 +66,7 @@ button {
     border-radius: 5px;
     margin: 10px;
     margin-top: 0px;
-    border: 4px solid rgba(255, 0, 0, 0.2);
+    border: 4px solid var(--playerColor);
     backdrop-filter: blur(20px);
 }
 
@@ -75,7 +75,7 @@ button {
     width: 200px;
     height: 200px;
     margin: 40px;
-    border: 4px solid rgba(255, 0, 0, 0.2);
+    border: 4px solid var(--playerColor);
     margin-right: 20px;
 }
 
