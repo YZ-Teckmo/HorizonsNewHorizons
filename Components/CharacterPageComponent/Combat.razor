@@ -1,0 +1,32 @@
+@using Database
+@inject HttpClient Http
+@code {
+    Character? Model = new();
+    protected override async Task OnInitializedAsync()
+    {
+        Model = await Http.GetFromJsonAsync<Character>("http://localhost:5003/api/home/getCharacter");
+    }
+}
+
+<div id="CombatDiv">
+    Ataque: <br>
+    Ataque Especial: <br>
+    Defesa: <br>
+    Velocidade: @Model.Dexterity <br>
+
+    Efeito Negativo:
+    @if (@Model.SubClass1 == "Debuffer" || @Model.SubClass2 == "Debuffer")
+    {
+        @Model.EnergyModifier
+    }
+    <br>
+
+    Efeito Positivo:
+    @if (@Model.SubClass1 == "Buffer" || @Model.SubClass2 == "Buffer")
+    {
+        @Model.EnergyModifier
+    }
+    <br>
+
+    Resistencia: @Model.Will <br>
+</div>

@@ -1,0 +1,32 @@
+@using Database
+@inject HttpClient Http
+@code {
+    Character? Model = new();
+    protected override async Task OnInitializedAsync()
+    {
+        Model = await Http.GetFromJsonAsync<Character>("http://localhost:5003/api/home/getCharacter");
+    }
+}
+
+
+<div id="InformationDiv">
+    <div id="InfoDiv">
+        <input class="Info" placeholder="Descreva a aparencia do seu personagem aqui" value="@Model.Apperence" />
+    </div>
+
+    <div id="InfoDiv">
+        <input class="Info" placeholder="Descreva a personalidade do seu personagem aqui" value="@Model.Personality" />
+    </div>
+
+    <div id="InfoDiv">
+        <input class="Info" placeholder="Escreva suas anotações aqui" value="@Model.Notes" />
+    </div>
+
+    <div id="InfoDiv">
+        <input class="Info" placeholder="Descreva a Lore do seu personagem aqui" value="@Model.Lore" />
+    </div>
+
+    <div id="InfoDiv">
+        <input class="Info" placeholder="Descreva as curiosidades do seu personagem aqui" value="@Model.Curiosity" />
+    </div>
+</div>

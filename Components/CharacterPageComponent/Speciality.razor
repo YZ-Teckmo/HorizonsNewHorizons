@@ -1,0 +1,20 @@
+@using Database
+@inject HttpClient Http
+@code {
+    Character? Model = new();
+    protected override async Task OnInitializedAsync()
+    {
+        Model = await Http.GetFromJsonAsync<Character>("http://localhost:5003/api/home/getCharacter");
+    }
+}
+
+<div id="SplDiv">
+    Força: @Model.Strength<br>
+    Destreza: @Model.Dexterity <br>
+    Inteligencia: @Model.Inteligency <br>
+    Energia: @Model.EnergyModifier <br>
+    Carisma: @Model.Charisma <br>
+    Vontade: @Model.Will <br>
+    Sorte: @Model.Lucky <br>
+    Afinidade: @Model.Afinnity <br>
+</div>
