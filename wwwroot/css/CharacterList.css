@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    color: #fff;
+}
+
+body {
+    background: url('../images/background.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 95vh;
+}
+
+nav {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+    margin: 10px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+}
+
+button {
+    background: #fff;
+    color: white;
+    border: 0;
+    border-radius: 40px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#newSheet {
+    display: flex;
+    justify-content: right;
+}
+
+#newSheetButton {
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+#editButton {
+    width: 100%;
+    padding: 5px;
+    margin: 0;
+    margin-bottom: 2px;
+}
+
+.userImg {
+    width: 75px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+#sheets {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+
+.sheetContainer {
+    margin-right: 10px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    width: 150px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0, 0, 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+}
+
+.sheetContainer p {
+    margin-left: 5px;
+}

@@ -16,12 +16,12 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    [HttpGet("getCharacter")]
-    public Character GetCharacter()
+    [HttpGet("getCharacter/{id:int}")]
+    public Character GetCharacter(int id)
     {
         using (var context = new DatabaseContext())
         {
-            return context.Characters.Where(x => x.Id == 1).Select(x => x).Single();
+            return context.Characters.Where(x => x.Id == id).Select(x => x).Single();
         }
     }
 
