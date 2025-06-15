@@ -159,28 +159,19 @@
                 HABILITIES
             </div>
 
-            <div id="InformationDiv">
-                <div id="InfoDiv">
-                    <input class="Info" placeholder="Descreva a aparencia do seu personagem aqui"
-                        value="@Model.Apperence" />
-                </div>
+            <div class="info-div" id="InformationDiv">
+                <div class="input-box" id="input-box">
 
-                <div id="InfoDiv">
-                    <input class="Info" placeholder="Descreva a personalidade do seu personagem aqui"
-                        value="@Model.Personality" />
-                </div>
+                    <textarea class="Info" placeholder="Descreva a aparencia do seu personagem aqui...">@Model.Apperence</textarea>
+             
+                    <textarea class="Info" placeholder="Descreva a personalidade do seu personagem aqui...">@Model.Personality</textarea>
 
-                <div id="InfoDiv">
-                    <input class="Info" placeholder="Escreva suas anotações aqui" value="@Model.Notes" />
-                </div>
+                    <textarea class="Info" placeholder="Escreva suas anotações aqui...">@Model.Notes</textarea>
 
-                <div id="InfoDiv">
-                    <input class="Info" placeholder="Descreva a Lore do seu personagem aqui" value="@Model.Lore" />
-                </div>
+                    <textarea class="Info" placeholder="Descreva a Lore do seu personagem aqui...">@Model.Lore</textarea>
 
-                <div id="InfoDiv">
-                    <input class="Info" placeholder="Descreva as curiosidades do seu personagem aqui"
-                        value="@Model.Curiosity" />
+                    <textarea class="Info" placeholder="Descreva as curiosidades do seu personagem aqui...">@Model.Curiosity</textarea>
+
                 </div>
             </div>
 
