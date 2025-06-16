@@ -27,13 +27,11 @@
 </head>
 
 <body>
-    <nav>
-        <button>Fichas</button>
-        <button>Informações</button>
-        <button>Combate</button>
-    </nav>
+
     <div id="newSheet">
-        <button id="newSheetButton">Nova Ficha</button>
+        <a href="/characterCreate/" target="_parent">
+            <button id="newSheetButton">Nova Ficha</button>
+        </a>
     </div>
 
     <div id="sheets">
@@ -46,7 +44,7 @@
                     Level: @Model.Level
                 </p>
 
-                <a href="/character/@Model.Id">
+                <a href="/character/@Model.Id" target="_parent">
                     <button id="editButton">Editar</button>
                 </a>
             </div>
@@ -54,5 +52,4 @@
     </div>
 </body>
 
-</html>using SQLitePCL;
-#line default
+</html>

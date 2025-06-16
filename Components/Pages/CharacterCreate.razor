@@ -1,0 +1,53 @@
+@page "/characterCreate"
+@rendermode InteractiveServer
+@using Database
+
+@code {
+    int Tab = 3;
+    void ChangeTab(int index)
+    {
+        Tab = index;
+    }
+
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="@Assets["css/CharacterCreate.css"]">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <title>Origins New Horizons | Criação de personagem</title>
+</head>
+
+<body>
+    <nav class="guide-nav">
+        <h1>-Inicio-</h1>
+        <h1>-Corpos-</h1>
+        <h1>-Nacionalidades-</h1>
+        <h1>-Classes-</h1>
+        <h1>-Informações Finais-</h1>
+    </nav>
+
+    <div class="main-text">
+        @if (Tab == 0)
+        {
+            <InitialPage />
+        }
+
+        @if (Tab == 1)
+        {
+            <BodyPage />
+        }
+
+        @if (Tab == 2)
+        {
+            <Nacionality />
+        }
+
+        @if (Tab == 3)
+        {
+            <FinalInformationPage />
+        }
+    </div>
+
+</body>
