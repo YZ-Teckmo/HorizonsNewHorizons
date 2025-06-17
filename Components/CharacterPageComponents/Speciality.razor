@@ -19,7 +19,7 @@
     {
         //Roll a normal d20
         Random random = new Random();
-        int num = random.Next(0, 21);
+        int num = random.Next(1, 20);
         if (num == 20)
         {
             color = "#41d93f";
@@ -33,76 +33,10 @@
             color = "#fff";
         }
 
-        if (index == 1)
+        if (index == 0)
         {
-            //Roll a d20 + Strength modifier
-            int str = @Model.Strength ?? default(int);
-            int strNum = num + str;
-            resultNumber = strNum.ToString();
-            sum = "Dados: " + num + " + " + str;
-        }
-
-        if (index == 2)
-        {
-            //Roll a d20 + Dexterity modifier
-            int dex = @Model.Dexterity ?? default(int);
-            int dexNum = num + dex;
-            resultNumber = dexNum.ToString();
-            sum = "Dados: " + num + " + " + dex;
-        }
-
-        if (index == 3)
-        {
-            //Roll a d20 + Inteligency modifier
-            int inte = @Model.Inteligency ?? default(int);
-            int inteNum = num + inte;
-            resultNumber = inteNum.ToString();
-            sum = "Dados: " + num + " + " + inte;
-        }
-
-        if (index == 4)
-        {
-            //Roll a d20 + Energy modifier
-            int ene = @Model.EnergyModifier ?? default(int);
-            int eneNum = num + ene;
-            resultNumber = eneNum.ToString();
-            sum = "Dados: " + num + " + " + ene;
-        }
-
-        if (index == 5)
-        {
-            //Roll a d20 + Charisma modifier
-            int car = @Model.Charisma ?? default(int);
-            int carNum = num + car;
-            resultNumber = carNum.ToString();
-            sum = "Dados: " + num + " + " + car;
-        }
-
-        if (index == 6)
-        {
-            //Roll a d20 + Will modifier
-            int will = @Model.Charisma ?? default(int);
-            int willNum = num + will;
-            resultNumber = willNum.ToString();
-            sum = "Dados: " + num + " + " + will;
-        }
-
-        if (index == 7)
-        {
-            //Roll a d20 + Luck modifier
-            int luck = @Model.Lucky ?? default(int);
-            int luckNum = num + luck;
-            resultNumber = luckNum.ToString();
-            sum = "Dados: " + num + " + " + luck;
-        }
-
-        if (index == 8)
-        {
-            //Roll a d20 + Affinity modifier
-            int afi = @Model.Afinnity ?? default(int);
-            int afiNum = num + afi;
-            resultNumber = afiNum.ToString();
-            sum = "Dados: " + num + " + " + afi;
+            resultNumber = num.ToString();
+            sum = "Dados: " + num;
         }
     }
     [Parameter] public int id { get; set; }
@@ -126,49 +60,49 @@
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/forca.png"]" alt="">
             <h1>(FOR) Força: @Model.Strength</h1>
-            <button class="roll-dice" @onclick="(() => ActivePopup(1))"><img class="icons"
+            <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/dex.png"]" alt="">
             <h1>(DES) Destreza: @Model.Dexterity</h1>
-            <button class="roll-dice" @onclick="(() => ActivePopup(2))"><img class="icons"
+            <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/int.png"]" alt="">
             <h1>(INT) Inteligência: @Model.Inteligency</h1>
-            <button class="roll-dice" @onclick="(() => ActivePopup(3))"><img class="icons"
+            <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/ene.png"]" alt="">
             <h1>(ENE) Energia: @Model.EnergyModifier</h1>
-            <button class="roll-dice" @onclick="(() => ActivePopup(4))"><img class="icons"
+            <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/car.png"]" alt="">
             <h1>(CAR) Carisma: @Model.Charisma</h1>
-            <button class="roll-dice" @onclick="(() => ActivePopup(5))"><img class="icons"
+            <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/von.png"]" alt="">
             <h1>(VON) Vontade: @Model.Will</h1>
-            <button class="roll-dice" @onclick="(() => ActivePopup(6))"><img class="icons"
+            <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/luck.png"]" alt="">
             <h1>(SOR) Sorte: @Model.Lucky</h1>
-            <button class="roll-dice" @onclick="(() => ActivePopup(7))"><img class="icons"
+            <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
@@ -177,7 +111,7 @@
             <div class="section">
                 <img class="icons" src="@Assets["images/StatsIcons/afi.png"]" alt="">
                 <h1>(AFI) Afinidade: @Model.Afinnity <br></h1>
-                <button class="roll-dice" @onclick="(() => ActivePopup(8))"><img class="icons"
+                <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                         src="@Assets["images/roll.png"]" alt=""></button>
             </div>
         }

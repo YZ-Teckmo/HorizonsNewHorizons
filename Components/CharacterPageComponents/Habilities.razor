@@ -1,6 +1,64 @@
 @using Database
 @inject HttpClient Http
 @code {
+    bool popup = false;
+    string resultNumber = "";
+    string sum = "";
+    string color = "";
+
+    public void ActivePopup(int index)
+    {
+        popup = true;
+        RollDice(index);
+    }
+
+    public void DeActivePopup()
+    {
+        popup = false;
+    }
+
+    public void RollDice(int index)
+    {
+        //Roll a normal d20
+        Random random = new Random();
+        int num = random.Next(1, 20);
+        if (num == 20)
+        {
+            color = "#41d93f";
+        }
+        else if (num == 1)
+        {
+            color = "#d93f3f";
+        }
+        else
+        {
+            color = "#fff";
+        }
+
+        if (index == 0)
+        {
+            //Roll a d20
+            resultNumber = num.ToString();
+            sum = "Dados: " + num;
+        }
+
+        if (index == 1)
+        {
+            //Número inicial da Database ("2"d20)
+            int init = 5;
+            //Número secundário da Database (2d"20")
+            int second = 10;
+
+            int soma = 0;
+            //Roll damage dice (Database)
+            for (int i = 0; i <= init; i++)
+            {
+                int dmg = random.Next(1, second);
+                soma += dmg;
+            }
+            resultNumber = soma.ToString();
+        }
+    }
 
     [Parameter] public int id { get; set; }
     Character? Model = new();
@@ -11,5 +69,16 @@
 }
 
 <div id="HabDiv">
-
+    <div class="sub-habilities-div"></div>
+    <button class="roll-dice" @onclick="(() => ActivePopup(1))"><img class="icons" src="@Assets["images/roll.png"]"
+            alt=""></button>
 </div>
+
+@if (popup == true)
+{
+    <div class="popup" id="popup">
+        <h2>@resultNumber</h2>
+        <button @onclick="(() => DeActivePopup())">Confirmar</button>
+        <h3>@sum</h3>
+    </div>
+}
