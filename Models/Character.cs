@@ -6,6 +6,7 @@ public class Character
 
     //Basic Information
     public string? Name { get; set; }
+    public string? TransformedName { get; set; }
     public int? Level { get; set; }
     public string? Mentor { get; set; }
     public List<byte>? CharacterPortrait { get; set; }
@@ -21,11 +22,16 @@ public class Character
     public string? Body { get; set; }
 
     //Stats
-    public int? Vitality { get; set; }
-    public int? Vigor { get; set; }
-    public int? EnergyStats { get; set; }
-    public int? Humanity { get; set; }
-    public int? Sanity { get; set; }
+    public string? Vitality { get; set; }
+    public string? CurrentVitality { get; set; }
+    public string? Vigor { get; set; }
+    public string? CurrentVigor { get; set; }
+    public string? EnergyStats { get; set; }
+    public string? CurrentEnergyStats { get; set; }
+    public string? Humanity { get; set; }
+    public string? CurrentHumanity { get; set; }
+    public string? Sanity { get; set; }
+    public string? CurrentSanity { get; set; }
 
     //Basic Speciality
     public int? Strength { get; set; }

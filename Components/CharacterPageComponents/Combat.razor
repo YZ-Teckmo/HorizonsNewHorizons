@@ -11,24 +11,51 @@
 }
 
 <div id="CombatDiv">
-    Ataque: <br>
-    Ataque Especial: <br>
-    Defesa: <br>
-    Velocidade: @Model.Dexterity <br>
+    <div class="sub-combat-div">
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/ataque.png"]" alt="">
+            <h1>(ATQ) Ataque: </h1>
+        </div>
 
-    Efeito Negativo:
-    @if (@Model.SubClass1 == "Debuffer" || @Model.SubClass2 == "Debuffer")
-    {
-        @Model.EnergyModifier
-    }
-    <br>
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/ataque.png"]" alt="">
+            <h1>(ATQ ESP) Ataque Especial: </h1>
+        </div>
 
-    Efeito Positivo:
-    @if (@Model.SubClass1 == "Buffer" || @Model.SubClass2 == "Buffer")
-    {
-        @Model.EnergyModifier
-    }
-    <br>
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/defesa.png"]" alt="">
+            <h1>(DEF) Defesa: @Model.Strength</h1>
+        </div>
 
-    Resistencia: @Model.Will <br>
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/velocidade.png"]" alt="">
+            <h1>(VEL) Velocidade: @Model.Dexterity</h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/fen.png"]" alt="">
+            <h1>(FEN) Efeito Negativo:
+                @if (@Model.SubClass1 == "Debuffer" || @Model.SubClass2 == "Debuffer")
+                {
+                    @Model.EnergyModifier
+                }
+            </h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/fep.png"]" alt="">
+            <h1>(FEP) Efeito Positivo:
+                @if (@Model.SubClass1 == "Buffer" || @Model.SubClass2 == "Buffer")
+                {
+                    @Model.EnergyModifier
+                }
+                <br>
+            </h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/res.png"]" alt="">
+            <h1>(RES) Resistencia: @Model.Will <br></h1>
+        </div>
+    </div>
 </div>

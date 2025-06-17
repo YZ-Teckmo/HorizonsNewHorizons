@@ -30,7 +30,7 @@ nav {
 button {
     background: #fff;
     color: white;
-    border: 3px solid var(--playerColor);
+    border: 4px solid var(--playerColor);
     border-radius: 40px;
     padding: 10px;
     margin: 10px;
@@ -54,13 +54,33 @@ h2 {
     width: 40%;
     height: 75vh;
     background-color: transparent;
-    display: flex;
     justify-content: left;
     border-radius: 5px;
     margin: 10px;
     margin-top: 0px;
     border: 4px solid var(--playerColor);
     backdrop-filter: blur(20px);
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.player-panel::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.player-panel::-webkit-scrollbar-thumb {
+    background-color: var(--playerColor);
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.sub-player-panel {
+    width: 100%;
+    height: 40%;
+    display: flex;
 }
 
 .player-status {
@@ -95,6 +115,7 @@ h2 {
 .player-info p {
     font-size: 20px;
     margin-top: 10px;
+    line-break: auto;
 }
 
 .player-info {
@@ -103,6 +124,7 @@ h2 {
 }
 
 .player-class {
+    width: 90px;
     width: 90px;
 }
 
@@ -197,4 +219,187 @@ h2 {
     background-color: var(--playerColor);
     border-radius: 10px;
     margin: 5px;
+}
+
+.stats-div {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.stats-div::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.stats-div::-webkit-scrollbar-thumb {
+    background-color: var(--playerColor);
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.sub-stats-div {
+    margin-top: 30px;
+    margin-left: 20px;
+    justify-content: left;
+}
+
+.positive-display {
+    float: left;
+    width: 95%;
+    height: 500px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 4px solid var(--playerColor);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+    backdrop-filter: blur(20px);
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.negative-display {
+    float: left;
+    width: 95%;
+    height: 500px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 4px solid var(--playerColor);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+    backdrop-filter: blur(20px);
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.global-display {
+    float: left;
+    width: 95%;
+    height: 500px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 4px solid var(--playerColor);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+    backdrop-filter: blur(20px);
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.friends-display {
+    float: left;
+    width: 95%;
+    height: 500px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 4px solid var(--playerColor);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+    backdrop-filter: blur(20px);
+    margin-top: 20px;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.sub-stats-div h1 {
+    font-size: 26px;
+}
+
+.sub-combat-div {
+    margin-top: 30px;
+    margin-left: 20px;
+    justify-content: left;
+}
+
+.sub-combat-div h1 {
+    font-size: 26px;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    align-self: center;
+}
+
+.section {
+    display: flex;
+    margin: 15px;
+    margin-top: 10px;
+}
+
+.icons {
+    width: 50px;
+}
+
+.player-bars {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-bottom: 20px;
+}
+
+.player-bars h1 {
+    margin-top: 25px;
+}
+
+.bars {
+    margin-top: 2px;
+    height: 80px;
+    width: 400px;
+    border: 4px solid var(--playerColor);
+    border-radius: 15px;
+}
+
+.inside-texts {
+    text-align: center;
+    align-self: center;
+}
+
+.life-bar {
+    height: 100%;
+    background-color: #51e346;
+    border-radius: 11px;
+}
+
+.vigor-bar {
+    height: 100%;
+    background-color: #962424;
+    border-radius: 11px;
+}
+
+.energy-bar {
+    height: 100%;
+    background-color: #0082e6;
+    border-radius: 11px;
+}
+
+.sanity-bar {
+    height: 100%;
+    background-color: #e95555;
+    border-radius: 11px;
+}
+
+.humanity-bar {
+    height: 100%;
+    background-color: #c3f48a;
+    border-radius: 11px;
+}
+
+.transformed-bar {
+    height: 100%;
+    background-color: var(--playerColor);
+    border-radius: 11px;
 }

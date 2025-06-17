@@ -5,9 +5,14 @@
 
 @code {
     int Tab = 0;
+    int InfoTab = 0;
     void ChangeTab(int index)
     {
         Tab = index;
+    }
+    void ChangeInfoTab(int index)
+    {
+        InfoTab = index;
     }
     [Parameter] public int id { get; set; }
     Character? Model = new();
@@ -26,19 +31,34 @@
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<style>
-    :root {
-        --playerColor:
-            @Model.PlayerColor
-        ;
-    }
-</style>
+
+@if (InfoTab == 0)
+{
+    <style>
+        :root {
+            --playerColor:
+                @Model.PlayerColor
+            ;
+        }
+    </style>
+}
+
+@if (InfoTab == 1)
+{
+    <style>
+        :root {
+            --playerColor:
+                @Model.TransformedColor
+            ;
+        }
+    </style>
+}
+
 
 <div class="transform-info">
     <nav class="left-nav">
-        <button class="left-buttons">Padrão</button>
-        <button class="left-buttons">Transformado</button>
-
+        <button @onclick="(() => ChangeInfoTab(0))">Padrão</button>
+        <button @onclick="(() => ChangeInfoTab(1))">Transformado</button>
     </nav>
     <nav class="right-nav">
         <button @onclick="(() => ChangeTab(0))">Especialidades</button>
@@ -51,44 +71,44 @@
 
 <div class="panels">
     <div class="player-panel">
-        <div class="player-image">
-            <input class="user-img" type="image" src="../images/plusv2.png" alt="Submit">
-        </div>
-        <div class="player-info">
-            <input class="player-class" type="image" src="../images/dpsIcon.png">
-            <p>
-                Nome: @Model.Name <br>
-                Level: @Model.Level<br>
-                Mentor: @Model.Mentor<br>
-            </p>
-        </div>
+
+        @if (InfoTab == 0)
+        {
+            <BasePlayerInfo id="@id" />
+        }
+
+        @if (InfoTab == 1)
+        {
+            <TransformedPlayerInfo id="@id" />
+        }
+
     </div>
+</div>
 
-    <div class="player-status">
+<div class="player-status">
 
-        @if (Tab == 0)
-        {
-            <Speciality id="@id" />
-        }
+    @if (Tab == 0)
+    {
+        <Speciality id="@id" />
+    }
 
-        @if (Tab == 1)
-        {
-            <Combat id="@id" />
-        }
+    @if (Tab == 1)
+    {
+        <Combat id="@id" />
+    }
 
-        @if (Tab == 2)
-        {
-            <Stats id="@id" />
-        }
+    @if (Tab == 2)
+    {
+        <Stats id="@id" />
+    }
 
-        @if (Tab == 3)
-        {
-            <Habilities id="@id" />
-        }
+    @if (Tab == 3)
+    {
+        <Habilities id="@id" />
+    }
 
-        @if (Tab == 4)
-        {
-            <Information id="@id" />
-        }
-    </div>
+    @if (Tab == 4)
+    {
+        <Information id="@id" />
+    }
 </div>

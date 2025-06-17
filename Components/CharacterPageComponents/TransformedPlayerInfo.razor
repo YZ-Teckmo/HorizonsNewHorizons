@@ -1,0 +1,62 @@
+@using Database
+@inject HttpClient Http
+@code {
+
+    [Parameter] public int id { get; set; }
+    Character? Model = new();
+    protected override async Task OnInitializedAsync()
+    {
+        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+    }
+}
+
+<div class="sub-player-panel">
+    <div class="player-image">
+        <input class="user-img" type="image" src="../images/plusv2.png" alt="Submit">
+    </div>
+    <div class="player-info">
+        @if (@Model.Class == "DPS")
+        {
+            <img class="player-class" src="@Assets["images/DPS.png"]" />
+        }
+        @if (@Model.Class == "TANK")
+        {
+            <img class="player-class" src="@Assets["images/TANK.png"]" />
+        }
+        @if (@Model.Class == "SUP")
+        {
+            <img class="player-class" src="@Assets["images/SUP.png"]" />
+        }
+        <p>
+            Nome: @Model.TransformedName <br>
+            Level: @Model.Level<br>
+            Mentor: @Model.Mentor<br>
+        </p>
+    </div>
+</div>
+<div class="player-bars">
+    <h1>Vitalidade</h1>
+    <div class="bars">
+        <div class="transformed-bar" style="width:@Model.CurrentVitality;"></div>
+    </div>
+
+    <h1>Vigor</h1>
+    <div class="bars">
+        <div class="transformed-bar" style="width:@Model.CurrentVigor;"></div>
+    </div>
+
+    <h1>Energia</h1>
+    <div class="bars">
+        <div class="transformed-bar" style="width:@Model.CurrentEnergyStats;"></div>
+    </div>
+
+    <h1>Sanidade</h1>
+    <div class="bars">
+        <div class="transformed-bar" style="width:@Model.CurrentSanity;"></div>
+    </div>
+
+    <h1>Humanidade</h1>
+    <div class="bars">
+        <div class="transformed-bar" style="width:@Model.CurrentHumanity;"></div>
+    </div>
+</div>

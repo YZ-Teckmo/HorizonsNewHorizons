@@ -11,12 +11,48 @@
 }
 
 <div id="SplDiv">
-    Força: @Model.Strength<br>
-    Destreza: @Model.Dexterity <br>
-    Inteligencia: @Model.Inteligency <br>
-    Energia: @Model.EnergyModifier <br>
-    Carisma: @Model.Charisma <br>
-    Vontade: @Model.Will <br>
-    Sorte: @Model.Lucky <br>
-    Afinidade: @Model.Afinnity <br>
+    <div class="sub-combat-div">
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/forca.png"]" alt="">
+            <h1>(FOR) Força: @Model.Strength</h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/dex.png"]" alt="">
+            <h1>(DES) Destreza: @Model.Dexterity</h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/int.png"]" alt="">
+            <h1>(INT) Inteligência: @Model.Inteligency</h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/ene.png"]" alt="">
+            <h1>(ENE) Energia: @Model.EnergyModifier</h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/car.png"]" alt="">
+            <h1>(CAR) Carisma: @Model.Charisma</h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/von.png"]" alt="">
+            <h1>(VON) Vontade: @Model.Will</h1>
+        </div>
+
+        <div class="section">
+            <img class="icons" src="@Assets["images/StatsIcons/luck.png"]" alt="">
+            <h1>(SOR) Sorte: @Model.Lucky</h1>
+        </div>
+
+        @if (@Model.Carrier == "yes")
+        {
+            <div class="section">
+                <img class="icons" src="@Assets["images/StatsIcons/afi.png"]" alt="">
+                <h1>(AFI) Afinidade: @Model.Afinnity <br></h1>
+            </div>
+        }
+    </div>
 </div>
