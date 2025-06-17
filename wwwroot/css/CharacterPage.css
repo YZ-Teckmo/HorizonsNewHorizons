@@ -342,6 +342,8 @@ h2 {
 
 .icons {
     width: 50px;
+    height: 50px;
+    align-self: center;
 }
 
 .player-bars {
@@ -402,4 +404,47 @@ h2 {
     height: 100%;
     background-color: var(--playerColor);
     border-radius: 11px;
+}
+
+.roll-dice {
+    width: 50px;
+    background: transparent;
+    border: none;
+    align-self: center;
+}
+
+.popup {
+    width: 500px;
+    border: 6px solid var(--playerColor);
+    backdrop-filter: blur(20px);
+    box-shadow: 0, 0, 10px rgba(0, 0, 0, .2);
+    border-radius: 40px;
+    position: absolute;
+    top: 80%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px;
+    justify-content: center;
+}
+
+.popup h2 {
+    color: var(--diceColor);
+    font-size: 34px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 0px;
+    text-align: center;
+}
+
+.popup h3 {
+    color: #ffffff80;
+    font-size: 16px;
+    text-align: center;
+}
+
+.popup button {
+    width: 80%;
+    font-size: 24px;
+    margin-bottom: 30px;
 }
