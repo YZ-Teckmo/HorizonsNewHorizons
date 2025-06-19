@@ -3,10 +3,10 @@
 @using Database
 
 @code {
-    int Tab = 3;
+    int tab = 1;
     void ChangeTab(int index)
     {
-        Tab = index;
+        tab = index;
     }
 
 }
@@ -29,22 +29,27 @@
     </nav>
 
     <div class="main-text">
-        @if (Tab == 0)
+        @if (tab == 0)
         {
             <InitialPage />
         }
 
-        @if (Tab == 1)
+        @if (tab == 1)
         {
             <BodyPage />
         }
 
-        @if (Tab == 2)
+        @if (tab == 2)
         {
             <Nacionality />
         }
 
-        @if (Tab == 3)
+        @if (tab == 3)
+        {
+            <ClassPage />
+        }
+
+        @if (tab == 4)
         {
             <FinalInformationPage />
         }

@@ -375,6 +375,20 @@ h2 {
     border-radius: 15px;
 }
 
+.text-bar {
+    height: 80px;
+    width: 400px;
+    align-self: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.text-bar h1 {
+    align-self: center;
+    text-align: center;
+    margin-top: 13px;
+}
+
 .inside-texts {
     text-align: center;
     align-self: center;

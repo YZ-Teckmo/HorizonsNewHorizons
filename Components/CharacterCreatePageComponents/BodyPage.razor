@@ -2,21 +2,20 @@
 
 @code
 {
-    int Popup = 0;
+    int popup = 0;
     public void ActivePopup(int index)
     {
-        Popup = index;
-        Console.WriteLine("Clicamo");
+        popup = index;
     }
 }
 
 <div class="class-box">
     <button class="a1" @onclick="(() => ActivePopup(1))">Humano</button>
-    <button class="a2" @onclick="(() => ActivePopup(2))">Humano</button>
-    <button class="a3" @onclick="(() => ActivePopup(3))">Humano</button>
+    <button class="a2" @onclick="(() => ActivePopup(2))">Monstro</button>
+    <button class="a3" @onclick="(() => ActivePopup(3))">Besta</button>
 </div>
 
-@if (Popup == 1)
+@if (popup == 1)
 {
     <div class="popup" id="popup">
         <h1>Humano</h1>
@@ -27,7 +26,7 @@
     </div>
 }
 
-@if (Popup == 2)
+@if (popup == 2)
 {
     <div class="popup" id="popup">
         <h1>Monstro</h1>
@@ -38,7 +37,7 @@
     </div>
 }
 
-@if (Popup == 3)
+@if (popup == 3)
 {
     <div class="popup" id="popup">
         <h1>Besta</h1>
