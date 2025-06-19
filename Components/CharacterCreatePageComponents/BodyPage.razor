@@ -3,11 +3,29 @@
 @code
 {
     int Popup = 0;
+
+    [Parameter]  public string? CurrentBody { get; set; }
+    [Parameter] public EventCallback<string> CurrentBodyChanged { get; set; }
+
+    async Task UpdateCurrentBody(int body)
+    {
+
+        string bodyText = "";
+        if (body == 0) bodyText = "Humano";
+        if (body == 1) bodyText = "Monstro";
+        if (body == 2) bodyText = "Besta";
+
+        CurrentBody = bodyText;
+        Console.WriteLine(CurrentBody);
+        await CurrentBodyChanged.InvokeAsync(CurrentBody);
+    }
+
     public void ActivePopup(int index)
     {
         Popup = index;
-        Console.WriteLine("Clicamo");
     }
+
+
 }
 
 <div class="class-box">
@@ -23,7 +41,7 @@
         <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet praesentium perferendis minima quasi
             necessitatibus sint repudiandae dolores quod odio officiis, dolorem molestiae vel cupiditate tempore
             consequatur. Perspiciatis quo itaque voluptas?</h2>
-        <button>Confirmar</button>
+        <button @onclick="(() => UpdateCurrentBody(0))">Confirmar</button>
     </div>
 }
 
@@ -34,7 +52,7 @@
         <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet praesentium perferendis minima quasi
             necessitatibus sint repudiandae dolores quod odio officiis, dolorem molestiae vel cupiditate tempore
             consequatur. Perspiciatis quo itaque voluptas?</h2>
-        <button>Confirmar</button>
+        <button @onclick="(() => UpdateCurrentBody(1))">Confirmar</button>
     </div>
 }
 
@@ -45,6 +63,6 @@
         <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet praesentium perferendis minima quasi
             necessitatibus sint repudiandae dolores quod odio officiis, dolorem molestiae vel cupiditate tempore
             consequatur. Perspiciatis quo itaque voluptas?</h2>
-        <button>Confirmar</button>
+        <button @onclick="(() => UpdateCurrentBody(2))">Confirmar</button>
     </div>
 }

@@ -1,13 +1,15 @@
 @page "/characterCreate"
 @rendermode InteractiveServer
-@using Database
 
 @code {
-    int Tab = 3;
+    int Tab = 0;
+    string PlayerBody = "";
+
     void ChangeTab(int index)
     {
         Tab = index;
     }
+
 
 }
 
@@ -19,7 +21,6 @@
     <title>Origins New Horizons | Criação de personagem</title>
 </head>
 
-<body>
     <nav class="guide-nav">
         <h1>-Inicio-</h1>
         <h1>-Corpos-</h1>
@@ -28,26 +29,26 @@
         <h1>-Informações Finais-</h1>
     </nav>
 
+
     <div class="main-text">
         @if (Tab == 0)
         {
-            <InitialPage />
+            <InitialPage @bind-CurrentTab=Tab/>
         }
 
         @if (Tab == 1)
         {
-            <BodyPage />
+            <BodyPage @bind-CurrentBody=PlayerBody />
         }
 
         @if (Tab == 2)
         {
-            <Nacionality />
+            //<Nacionality />
         }
 
         @if (Tab == 3)
         {
-            <FinalInformationPage />
+            //<FinalInformationPage />
         }
     </div>
 
-</body>

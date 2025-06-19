@@ -1,0 +1,21 @@
+@page "/debug"
+@rendermode InteractiveServer
+@using Database
+@inject HttpClient Http
+
+@code {
+    int Tab = 0;
+    void create(){
+        Character character = new();
+        character.Name = "Evandro";
+        character.Level = 34;
+
+        Http.PostAsJsonAsync("http://localhost:5003/api/home/createCharacter", character);
+    }
+}
+
+<button @onclick="(() => create())">Click</button>
+
+@if (Tab == 0){
+<InitialPage @bind-CurrentTab=Tab></InitialPage>
+}

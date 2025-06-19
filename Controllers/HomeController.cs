@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using OriginsNewHorizons.Models;
 using Database;
+using System.Net;
 
 namespace OriginsNewHorizons.Controllers;
 
@@ -32,5 +33,19 @@ public class HomeController : Controller
         {
             return context.Characters.Where(x => x == x).Select(x => x).ToList();
         }
+    }
+
+    [HttpPost("createCharacter")]
+    public IActionResult CreateCharacter([FromBody]Character character)
+    {
+        Console.WriteLine("Chegou!");
+        Console.WriteLine(character.ToString());
+        using (var context = new DatabaseContext())
+        {
+            context.Characters.Add(character);
+            context.SaveChanges();
+        }
+
+        return Ok();
     }
 }
