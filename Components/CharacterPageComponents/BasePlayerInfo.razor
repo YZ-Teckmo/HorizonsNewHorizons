@@ -2,24 +2,15 @@
 @rendermode InteractiveServer
 @inject HttpClient Http
 @code {
+    [Parameter] public Character Model { get; set; }
+    [Parameter] public EventCallback<Character> ModelChanged{ get; set; }
 
-    [Parameter] public int id { get; set; }
-    Character? Model = new();
-    protected override async Task OnInitializedAsync()
+    async Task ChangeModel()
     {
-        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+        await ModelChanged.InvokeAsync(Model);
     }
 
-    [Parameter] public Character CurrentCharacter { get; set; }
-    [Parameter] public EventCallback<Character> CurrentCharacterChanged { get; set; }
-    async Task UpdateCurrentClass(string color, string transformedColor)
-    {
-        CurrentCharacter.PlayerColor = color;
-        CurrentCharacter.TransformedColor = transformedColor;
-        await CurrentCharacterChanged.InvokeAsync(CurrentCharacter);
-    }
-
-    //[Parameter] public bool edit { get; set; } = true;
+    [Parameter] public bool edit { get; set; }
 }
 
 <div class="sub-player-panel">
@@ -41,25 +32,26 @@
         }
         <p>
             Nome: @Model.Name <br>
-            Level: @Model.Level<br>
+            Level: <input type="number" value="@Model.Level" class="data-input" @bind-level="@Model.Level" @bind-level:event="oninput" @onchange="() => ChangeModel()"> <br>
             Mentor: @Model.Mentor<br>
         </p>
     </div>
 </div>
 
 
+@if(edit){
 <div class="colors">
     <div class="color-select">
         <h1>Cor do jogador:</h1>
-        <input @bind-color="@CurrentCharacter.PlayerColor" @bind-color:event="oninput" type="color" class="color picker" value="#ffffff">
+        <input type="color" class="color picker" value="#ffffff" @bind-color="@Model.PlayerColor" @bind-color:event="oninput" @onchange="() => ChangeModel()">
     </div>
 
     <div class="color-select">
         <h1>Cor da transformação:</h1>
-        <input type="color" class="color picker" value="#ffffff">
+        <input type="color" class="color picker" value="#ffffff" @bind-transformedcolor="@Model.TransformedColor" @bind-transformedcolor:event="oninput" @onchange="() => ChangeModel()">
     </div>
 </div>
-
+}
 
 <div class="player-bars">
     <h1>Vitalidade</h1>

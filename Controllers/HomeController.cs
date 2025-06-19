@@ -51,8 +51,46 @@ public class HomeController : Controller
     [HttpGet("GetLastCharacter")]
     public int GetLastCharacter()
     {
-        using (var context = new DatabaseContext()) {
+        using (var context = new DatabaseContext())
+        {
             return context.Characters.Select(x => x.Id).ToArray().Last();
         }
     }
+
+    [HttpGet("GetHability/{id:int}")]
+    public PlayerHability GetHability(int id)
+    {
+        using (var context = new DatabaseContext())
+        {
+            return context.PlayerHabilities.Where(x => x.Id == id).Select(x => x).Single();
+        }
+    }
+
+    [HttpPost("EditCharacter")]
+    public IActionResult EditCharacter([FromBody] Character character)
+    {
+        using (var context = new DatabaseContext())
+        {
+            Console.WriteLine(character.Strength);
+            var p = context.Characters.Where(x => x.Id == character.Id).Single();
+            p.Strength = character.Strength;
+            p.Dexterity = character.Dexterity;
+            p.Inteligency = character.Inteligency;
+            p.EnergyModifier = character.EnergyModifier;
+            p.Charisma = character.Charisma;
+            p.Will = character.Will;
+            p.Lucky = character.Lucky;
+            p.Apperence = character.Apperence;
+            p.Personality = character.Personality;
+            p.Notes = character.Notes;
+            p.Lore = character.Lore;
+            p.Curiosity = character.Curiosity;
+            p.Level = character.Level;
+            p.PlayerColor = character.PlayerColor;
+            p.TransformedColor = character.TransformedColor;
+            context.SaveChanges();
+        }
+        return Ok();
+    }
+
 }

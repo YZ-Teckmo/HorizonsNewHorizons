@@ -1,6 +1,7 @@
 @using Database
 @inject HttpClient Http
 @code {
+    [Parameter] public bool edit {get;set;}
     bool popup = false;
     string resultNumber = "";
     string sum = "";
@@ -39,11 +40,19 @@
             sum = "Dados: " + num;
         }
     }
-    [Parameter] public int id { get; set; }
-    Character? Model = new();
-    protected override async Task OnInitializedAsync()
+    //[Parameter] public int id { get; set; }
+    //Character? Model = new();
+    /*protected override async Task OnInitializedAsync()
     {
         Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+    }*/
+
+    [Parameter] public Character Model { get; set; }
+    [Parameter] public EventCallback<Character> ModelChanged{ get; set; }
+
+    async Task ChangeModel()
+    {
+        await ModelChanged.InvokeAsync(Model);
     }
 }
 
@@ -59,49 +68,49 @@
     <div class="sub-combat-div">
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/forca.png"]" alt="">
-            <h1>(FOR) Força: <input type="text" class="data-input" value="@Model.Strength" disabled></h1>
+            <h1>(FOR) Força: @if(edit){ <input type="number" class="data-input" value="@Model.Strength" @bind-strength="@Model.Strength" @bind-strength:event="oninput" @onchange="() => ChangeModel()">}</h1>
             <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/dex.png"]" alt="">
-            <h1>(DES) Destreza: <input type="text" class="data-input" value="@Model.Dexterity" disabled></h1>
+            <h1>(DES) Destreza:  @if(edit){<input type="number" class="data-input" value="@Model.Dexterity" @bind-dex="@Model.Dexterity" @bind-dex:event="oninput">}</h1>
             <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/int.png"]" alt="">
-            <h1>(INT) Inteligência: <input type="text" class="data-input" value="@Model.Inteligency" disabled></h1>
+            <h1>(INT) Inteligência:  @if(edit){<input type="number" class="data-input" value="@Model.Inteligency" @bind-int="@Model.Inteligency" @bind-int:event="oninput">}</h1>
             <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/ene.png"]" alt="">
-            <h1>(ENE) Energia: <input type="text" class="data-input" value="@Model.EnergyModifier" disabled></h1>
+            <h1>(ENE) Energia:  @if(edit){<input type="number" class="data-input" value="@Model.EnergyModifier" @bind-ene="@Model.EnergyModifier" @bind-ene:event="oninput">}</h1>
             <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/car.png"]" alt="">
-            <h1>(CAR) Carisma: <input type="text" class="data-input" value="@Model.Charisma" disabled></h1>
+            <h1>(CAR) Carisma:  @if(edit){<input type="number" class="data-input" value="@Model.Charisma" @bind-charisma="@Model.Charisma" @bind-charisma:event="oninput" @onchange="() => ChangeModel()">}</h1>
             <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/von.png"]" alt="">
-            <h1>(VON) Vontade: <input type="text" class="data-input" value="@Model.Will" disabled></h1>
+            <h1>(VON) Vontade:  @if(edit){<input type="number" class="data-input" value="@Model.Will" @bind-will="@Model.Will" @bind-will:event="oninput" @onchange="() => ChangeModel()">}</h1>
             <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
 
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/luck.png"]" alt="">
-            <h1>(SOR) Sorte: <input type="text" class="data-input" value="@Model.Lucky" disabled></h1>
+            <h1>(SOR) Sorte:  @if(edit){<input type="number" class="data-input" value="@Model.Lucky" @bind-luck="@Model.Lucky" @bind-luck:event="oninput" @onchange="() => ChangeModel()">}</h1>
             <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                     src="@Assets["images/roll.png"]" alt=""></button>
         </div>
@@ -110,12 +119,15 @@
         {
             <div class="section">
                 <img class="icons" src="@Assets["images/StatsIcons/afi.png"]" alt="">
-                <h1>(AFI) Afinidade: <input type="text" class="data-input" value="@Model.Afinnity" disabled></h1>
+                <h1>(AFI) Afinidade:  @if(edit){<input type="number" class="data-input" value="@Model.Afinnity">}</h1>
                 <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"
                         src="@Assets["images/roll.png"]" alt=""></button>
             </div>
         }
     </div>
+
+    
+
 </div>
 
 @if (popup == true)

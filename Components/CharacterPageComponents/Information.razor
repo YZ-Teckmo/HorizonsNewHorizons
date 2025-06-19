@@ -3,10 +3,13 @@
 @code {
 
     [Parameter] public int id { get; set; }
-    Character? Model = new();
-    protected override async Task OnInitializedAsync()
+
+    [Parameter] public Character Model { get; set; }
+    [Parameter] public EventCallback<Character> ModelChanged{ get; set; }
+
+    async Task ChangeModel()
     {
-        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+        await ModelChanged.InvokeAsync(Model);
     }
 }
 
@@ -14,16 +17,15 @@
 <div class="info-div" id="InformationDiv">
     <div class="input-box" id="input-box">
 
-        <textarea class="Info" placeholder="Descreva a aparencia do seu personagem aqui...">@Model.Apperence</textarea>
+        <textarea @bind-apperence="@Model.Apperence" @bind-apperence:event="oninput" @onchange="() => ChangeModel()" class="Info" placeholder="Descreva a aparencia do seu personagem aqui...">@Model.Apperence</textarea>
 
-        <textarea class="Info"
-            placeholder="Descreva a personalidade do seu personagem aqui...">@Model.Personality</textarea>
+        <textarea  @bind-personality="@Model.Personality" @bind-personality:event="oninput" @onchange="() => ChangeModel()" class="Info" placeholder="Descreva a personalidade do seu personagem aqui...">@Model.Personality</textarea>
 
-        <textarea class="Info" placeholder="Escreva suas anotações aqui...">@Model.Notes</textarea>
+        <textarea @bind-notes="@Model.Notes" @bind-notes:event="oninput" @onchange="() => ChangeModel()" class="Info" placeholder="Escreva suas anotações aqui...">@Model.Notes</textarea>
 
-        <textarea class="Info" placeholder="Descreva a Lore do seu personagem aqui...">@Model.Lore</textarea>
+        <textarea @bind-lore="@Model.Lore" @bind-lore:event="oninput" @onchange="() => ChangeModel()" class="Info" placeholder="Descreva a Lore do seu personagem aqui...">@Model.Lore</textarea>
 
-        <textarea class="Info"
+        <textarea @bind-info="@Model.Curiosity" @bind-info:event="oninput" @onchange="() => ChangeModel()" class="Info"
             placeholder="Descreva as curiosidades do seu personagem aqui...">@Model.Curiosity</textarea>
 
     </div>

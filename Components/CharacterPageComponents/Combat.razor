@@ -4,9 +4,11 @@
 
     [Parameter] public int id { get; set; }
     Character? Model = new();
+    int? attack = 0;
     protected override async Task OnInitializedAsync()
     {
         Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+        attack = Model.Strength + Model.Dexterity;
     }
 }
 
@@ -14,7 +16,7 @@
     <div class="sub-combat-div">
         <div class="section">
             <img class="icons" src="@Assets["images/StatsIcons/ataque.png"]" alt="">
-            <h1>(ATQ) Ataque: </h1>
+            <h1>(ATQ) Ataque: @attack </h1>
         </div>
 
         <div class="section">

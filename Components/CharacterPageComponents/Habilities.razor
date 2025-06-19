@@ -1,5 +1,6 @@
 @using Database
 @inject HttpClient Http
+@rendermode InteractiveServer
 @code {
     bool popup = false;
     string resultNumber = "";
@@ -62,22 +63,36 @@
 
     [Parameter] public int id { get; set; }
     Character? Model = new();
+    List<int> habIds = new();
+    List<PlayerHability> amogus = new();
     protected override async Task OnInitializedAsync()
     {
         Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+        habIds = Model.Habilities;
+        foreach (var h in habIds){
+            amogus.Add(await Http.GetFromJsonAsync<PlayerHability>($"http://localhost:5003/api/home/GetHability/{h}"));
+        }
     }
+
+    PlayerHability hability = new ();
+
 }
 
 <div id="HabDiv">
-    <div class="sub-habilities-div"></div>
-    <button class="roll-dice" @onclick="(() => ActivePopup(1))"><img class="icons" src="@Assets["images/roll.png"]"
-            alt=""></button>
+    <div class="sub-habilities-div">
+        @foreach (var hab in amogus) {
+            @hab.Name  
+            @hab.Description
+            @hab.Dices
+            <br/>
+        }
+    </div>
 </div>
 
 @if (popup == true)
 {
-    <div class="popup" id="popup">
-        <h2>@resultNumber</h2>
+    <div>
+    <h2>@resultNumber</h2>
         <button @onclick="(() => DeActivePopup())">Confirmar</button>
         <h3>@sum</h3>
     </div>

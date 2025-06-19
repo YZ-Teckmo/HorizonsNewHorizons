@@ -21,6 +21,12 @@
     {
         Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
     }
+
+    async Task EditCharacter(){
+        Console.WriteLine("AMOGUS");
+        await Http.PostAsJsonAsync($"http://localhost:5003/api/home/EditCharacter", Model);
+    }
+
 }
 
 <head>
@@ -92,7 +98,7 @@
         <button @onclick="(() => ChangeTab(3))">Habilidades</button>
         <button @onclick="(() => ChangeTab(4))">Informações</button>
         <button class="config"><img src="@Assets["images/cog.png"]"></button>
-        <button class="config"><img src="@Assets["images/save.png"]"></button>
+        <button class="config"><img src="@Assets["images/save.png"]" @onclick="() => EditCharacter()"></button>
     </nav>
 </div>
 
@@ -101,7 +107,7 @@
 
         @if (InfoTab == 0)
         {
-            <BasePlayerInfo id="@id" />
+            <BasePlayerInfo @bind-Model=Model edit="@Edit" />
         }
 
         @if (InfoTab == 1)
@@ -116,7 +122,7 @@
 
     @if (Tab == 0)
     {
-        <Speciality id="@id" />
+        <Speciality edit="@Edit" @bind-Model=Model/>
     }
 
     @if (Tab == 1)
@@ -136,9 +142,7 @@
 
     @if (Tab == 4)
     {
-        <Information id="@id" @bind-CurrentCharacter=Model/>
+        <Information id="@id" @bind-Model=Model/>
     }
 </div>
 
-@Model.PlayerColor
-@Model.TransformedColor
