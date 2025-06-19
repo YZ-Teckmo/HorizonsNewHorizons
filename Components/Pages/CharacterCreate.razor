@@ -1,19 +1,18 @@
 @page "/characterCreate"
+@using Database
 @rendermode InteractiveServer
 
-@code {
-<<<<<<< HEAD
-    int Tab = 0;
-    string PlayerBody = "";
+@using OriginsNewHorizons.Controllers
 
-=======
-    int tab = 1;
->>>>>>> dev
+@code {
+    int Tab = 0;
+
     void ChangeTab(int index)
     {
-        tab = index;
+        Tab = index;
     }
 
+    Character player = new();
 
 }
 
@@ -35,29 +34,29 @@
 
 
     <div class="main-text">
-        @if (tab == 0)
+        @if (Tab == 0)
         {
             <InitialPage @bind-CurrentTab=Tab/>
         }
 
-        @if (tab == 1)
+        @if (Tab == 1)
         {
-            <BodyPage @bind-CurrentBody=PlayerBody />
+            <BodyPage @bind-CurrentBody=player.Body @bind-CurrentTab=Tab />
         }
 
-        @if (tab == 2)
+        @if (Tab == 2)
         {
-            //<Nacionality />
+            <Nacionality @bind-CurrentNation=player.Nation @bind-CurrentTab=Tab />
         }
 
-        @if (tab == 3)
+        @if (Tab == 3)
         {
-            <ClassPage />
+            <ClassPage @bind-CurrentClass=player.Class @bind-CurrentTab=Tab />
         }
 
-        @if (tab == 4)
+        @if (Tab == 4)
         {
-            //<FinalInformationPage />
+            <FinalInformationPage @bind-player=player/>
         }
     </div>
 

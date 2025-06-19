@@ -1,26 +1,56 @@
+@code {
+    [Parameter]  public string? CurrentNation { get; set; }
+    [Parameter] public EventCallback<string> CurrentNationChanged { get; set; }
+
+    [Parameter] public int CurrentTab { get; set; }
+    [Parameter] public EventCallback<int> CurrentTabChanged { get; set; }
+
+    async Task UpdateCurrentNation(int nation)
+    {
+        string nationText = "";
+        if (nation == 0) nationText = "Starlink";
+        if (nation == 1) nationText = "Vulpeflow";
+        if (nation == 2) nationText = "Grifford";
+        if (nation == 3) nationText = "Lycani";
+        if (nation == 4) nationText = "Rufored";
+
+        CurrentNation = nationText;
+
+        await CurrentNationChanged.InvokeAsync(CurrentNation);
+        await ChangeTab(3);
+    }
+
+    async Task ChangeTab(int index)
+    {
+        CurrentTab = index;
+        await CurrentTabChanged.InvokeAsync(CurrentTab);
+    }
+}
+
+
 <div class="nacion-box">
     <div>
         <h1>Starlink</h1>
-        <button class="img-buttons"><img src="@Assets["/images/NacionIcons/star.png"]"></button>
+        <button @onclick="() => UpdateCurrentNation(0)" class="img-buttons"><img src="@Assets["/images/NacionIcons/star.png"]"></button>
     </div>
 
     <div>
         <h1>Vulpeflow</h1>
-        <button class="img-buttons"><img src="@Assets["/images/NacionIcons/vulpe.png"]"></button>
+        <button @onclick="() => UpdateCurrentNation(1)" class="img-buttons"><img src="@Assets["/images/NacionIcons/vulpe.png"]"></button>
     </div>
 
     <div>
         <h1>Grifford</h1>
-        <button class="img-buttons"><img src="@Assets["/images/NacionIcons/grif.png"]"></button>
+        <button @onclick="() => UpdateCurrentNation(2)" class="img-buttons"><img src="@Assets["/images/NacionIcons/grif.png"]"></button>
     </div>
 
     <div>
         <h1>Lycani</h1>
-        <button class="img-buttons"><img src="@Assets["/images/NacionIcons/lyc.png"]"></button>
+        <button @onclick="() => UpdateCurrentNation(3)" class="img-buttons"><img src="@Assets["/images/NacionIcons/lyc.png"]"></button>
     </div>
 
     <div>
         <h1>Rufored</h1>
-        <button class="img-buttons"><img src="@Assets["/images/NacionIcons/ruf.png"]"></button>
+        <button @onclick="() => UpdateCurrentNation(4)" class="img-buttons"><img src="@Assets["/images/NacionIcons/ruf.png"]"></button>
     </div>
 </div>

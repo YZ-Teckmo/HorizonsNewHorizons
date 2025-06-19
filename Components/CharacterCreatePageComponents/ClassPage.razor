@@ -1,16 +1,43 @@
+@code {
+    [Parameter]  public string? CurrentClass { get; set; }
+    [Parameter] public EventCallback<string> CurrentClassChanged { get; set; }
+
+    [Parameter] public int CurrentTab { get; set; }
+    [Parameter] public EventCallback<int> CurrentTabChanged { get; set; }
+
+    async Task UpdateCurrentClass(int index)
+    {
+        string classText = "";
+        if (index == 0) classText = "dps";
+        if (index == 1) classText = "tank";
+        if (index == 2) classText = "support";
+
+        CurrentClass = classText;
+
+        await CurrentClassChanged.InvokeAsync(CurrentClass);
+        await ChangeTab(4);
+    }
+
+    async Task ChangeTab(int index)
+    {
+        CurrentTab = index;
+        await CurrentTabChanged.InvokeAsync(CurrentTab);
+    }
+}
+
 <div class="classs-box">
     <div>
         <h1>DPS</h1>
-        <button class="img-buttons"><img src="@Assets["/images/DPS.png"]"></button>
+        <button @onclick="() => UpdateCurrentClass(0)" class="img-buttons"><img src="@Assets["/images/DPS.png"]"></button>
     </div>
 
     <div>
         <h1>TANK</h1>
-        <button class="img-buttons"><img src="@Assets["/images/TANK.png"]"></button>
+        <button @onclick="() => UpdateCurrentClass(1)"class="img-buttons"><img src="@Assets["/images/TANK.png"]"></button>
     </div>
 
     <div>
         <h1>SUPORTE</h1>
-        <button class="img-buttons"><img src="@Assets["/images/SUP.png"]"></button>
+        <button @onclick="() => UpdateCurrentClass(2)" class="img-buttons"><img src="@Assets["/images/SUP.png"]"></button>
     </div>
 </div>

@@ -36,16 +36,23 @@ public class HomeController : Controller
     }
 
     [HttpPost("createCharacter")]
-    public IActionResult CreateCharacter([FromBody]Character character)
+    public IActionResult CreateCharacter([FromBody] Character character)
     {
-        Console.WriteLine("Chegou!");
-        Console.WriteLine(character.ToString());
+        int id;
         using (var context = new DatabaseContext())
         {
             context.Characters.Add(character);
             context.SaveChanges();
+            id = context.Characters.Select(x => x.Id).ToArray().Last();
         }
-
         return Ok();
+    }
+
+    [HttpGet("GetLastCharacter")]
+    public int GetLastCharacter()
+    {
+        using (var context = new DatabaseContext()) {
+            return context.Characters.Select(x => x.Id).ToArray().Last();
+        }
     }
 }
