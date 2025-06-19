@@ -4,6 +4,7 @@
 @inject HttpClient Http
 
 @code {
+    bool Edit = true;
     int Tab = 0;
     int InfoTab = 0;
     void ChangeTab(int index)
@@ -135,7 +136,9 @@
 
     @if (Tab == 4)
     {
-        <Information id="@id" />
+        <Information id="@id" @bind-CurrentCharacter=Model/>
     }
-
 </div>
+
+@Model.PlayerColor
+@Model.TransformedColor
