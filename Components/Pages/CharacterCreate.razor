@@ -2,12 +2,16 @@
 @rendermode InteractiveServer
 
 @code {
+<<<<<<< HEAD
     int Tab = 0;
     string PlayerBody = "";
 
+=======
+    int tab = 1;
+>>>>>>> dev
     void ChangeTab(int index)
     {
-        Tab = index;
+        tab = index;
     }
 
 
@@ -31,22 +35,27 @@
 
 
     <div class="main-text">
-        @if (Tab == 0)
+        @if (tab == 0)
         {
             <InitialPage @bind-CurrentTab=Tab/>
         }
 
-        @if (Tab == 1)
+        @if (tab == 1)
         {
             <BodyPage @bind-CurrentBody=PlayerBody />
         }
 
-        @if (Tab == 2)
+        @if (tab == 2)
         {
             //<Nacionality />
         }
 
-        @if (Tab == 3)
+        @if (tab == 3)
+        {
+            <ClassPage />
+        }
+
+        @if (tab == 4)
         {
             //<FinalInformationPage />
         }

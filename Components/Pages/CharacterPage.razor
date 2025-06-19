@@ -34,24 +34,48 @@
 
 @if (InfoTab == 0)
 {
-    <style>
-        :root {
-            --playerColor:
-                @Model.PlayerColor
-            ;
-        }
-    </style>
+    if (@Model.PlayerColor == null)
+    {
+        <style>
+            :root {
+                --playerColor:
+                    #e0e0e0;
+            }
+        </style>
+    }
+    else
+    {
+        <style>
+            :root {
+                --playerColor:
+                    @Model.PlayerColor
+                ;
+            }
+        </style>
+    }
 }
 
 @if (InfoTab == 1)
 {
-    <style>
-        :root {
-            --playerColor:
-                @Model.TransformedColor
-            ;
-        }
-    </style>
+    if (@Model.TransformedColor == null)
+    {
+        <style>
+            :root {
+                --playerColor:
+                    #e0e0e0;
+            }
+        </style>
+    }
+    else
+    {
+        <style>
+            :root {
+                --playerColor:
+                    @Model.TransformedColor
+                ;
+            }
+        </style>
+    }
 }
 
 

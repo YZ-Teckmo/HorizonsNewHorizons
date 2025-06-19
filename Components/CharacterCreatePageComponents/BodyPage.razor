@@ -3,7 +3,6 @@
 @code
 {
     int Popup = 0;
-
     [Parameter]  public string? CurrentBody { get; set; }
     [Parameter] public EventCallback<string> CurrentBodyChanged { get; set; }
 
@@ -24,14 +23,12 @@
     {
         Popup = index;
     }
-
-
 }
 
 <div class="class-box">
     <button class="a1" @onclick="(() => ActivePopup(1))">Humano</button>
-    <button class="a2" @onclick="(() => ActivePopup(2))">Humano</button>
-    <button class="a3" @onclick="(() => ActivePopup(3))">Humano</button>
+    <button class="a2" @onclick="(() => ActivePopup(2))">Monstro</button>
+    <button class="a3" @onclick="(() => ActivePopup(3))">Besta</button>
 </div>
 
 @if (Popup == 1)

@@ -100,12 +100,3 @@ main {
     right: 0.75rem;
     top: 0.5rem;
 }
-
-nav {
-    background-color: transparent;
-    justify-content: center;
-    border-radius: 5px;
-    margin: 10px;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);
-}
