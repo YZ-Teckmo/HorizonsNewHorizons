@@ -90,6 +90,8 @@
         <button @onclick="(() => ChangeTab(2))">Status</button>
         <button @onclick="(() => ChangeTab(3))">Habilidades</button>
         <button @onclick="(() => ChangeTab(4))">Informações</button>
+        <button class="config"><img src="@Assets["images/cog.png"]"></button>
+        <button class="config"><img src="@Assets["images/save.png"]"></button>
     </nav>
 </div>
 
@@ -135,4 +137,5 @@
     {
         <Information id="@id" />
     }
+
 </div>
