@@ -8,15 +8,23 @@
     string sum = "";
     string color = "";
 
-    public void ActivePopup(int index)
+    public void ActivePopup(int index, string dices)
     {
         popup = true;
-        RollDice(index);
+        RollDice(index, dices);
     }
+
+    PlayerHability newHability = new();
 
     public void ActiveHabCreation(bool active)
     {
         popupHab = active;
+        if (!active){
+            CharacterAndHability charAndhab = new();
+            charAndhab.Character = Model;
+            charAndhab.Hability = newHability;
+            Http.PostAsJsonAsync($"http://localhost:80/api/home/CreateHability", charAndhab);
+        }
     }
 
     public void DeActivePopup()
@@ -24,7 +32,7 @@
         popup = false;
     }
 
-    public void RollDice(int index)
+    public void RollDice(int index, string dices)
     {
         //Roll a normal d20
         Random random = new Random();
@@ -51,14 +59,15 @@
 
         if (index == 1)
         {
+            string[] a = dices.Split("d");
             //Número inicial da Database ("2"d20)
-            int init = 5;
+            int init = Int32.Parse(a[0]);
             //Número secundário da Database (2d"20")
-            int second = 10;
+            int second = Int32.Parse(a[1]);;
 
             int soma = 0;
             //Roll damage dice (Database)
-            for (int i = 0; i <= init; i++)
+            for (int i = 0; i < init; i++)
             {
                 int dmg = random.Next(1, second);
                 soma += dmg;
@@ -73,7 +82,7 @@
     List<PlayerHability> amogus = new();
     protected override async Task OnInitializedAsync()
     {
-        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:80/api/home/getCharacter/{id}");
         if (Model.Habilities != null)
         {
             habIds = Model.Habilities;
@@ -81,12 +90,9 @@
 
         foreach (var h in habIds)
         {
-            amogus.Add(await Http.GetFromJsonAsync<PlayerHability>($"http://localhost:5003/api/home/GetHability/{h}"));
+            amogus.Add(await Http.GetFromJsonAsync<PlayerHability>($"http://localhost:80/api/home/GetHability/{h}"));
         }
     }
-
-    PlayerHability hability = new();
-
 }
 
 <div id="HabDiv">
@@ -94,7 +100,9 @@
     <div class="sub-habilities-div">
         @foreach (var hab in amogus)
         {
-
+            <h1>@hab.Name | @hab.Description | @hab.Dices</h1> 
+            <button class="roll-dice" @onclick="(() => ActivePopup(1, hab.Dices))"><img class="icons"
+                    src="@Assets["images/roll.png"]" alt=""></button>
         }
     </div>
 </div>
@@ -119,17 +127,17 @@
 
         <div class="selection">
             <h1>Nome:</h1>
-            <input type="text" placeholder="Coloque o nome da sua habilidade aqui...">
+            <input @bind-name="newHability.Name" @bind-name:event="oninput" type="text" placeholder="Coloque o nome da sua habilidade aqui...">
         </div>
 
         <div class="selection">
             <h1>Descrição:</h1>
-            <textarea placeholder="Coloque a descrição da sua habilidade aqui..."></textarea>
+            <textarea @bind-description="newHability.Description" @bind-description:event="oninput" placeholder="Coloque a descrição da sua habilidade aqui..."></textarea>
         </div>
 
         <div class="selection">
             <h1>Efeito(Dados):</h1>
-            <input type="text" placeholder="Coloque os dados de efeito da sua habilidade aqui...">
+            <input @bind-dice="newHability.Dices" @bind-dice:event="oninput" type="text" placeholder="Coloque os dados de efeito da sua habilidade aqui...">
         </div>
         <button @onclick='() => ActiveHabCreation(false)'>Confirmar</button>
     </div>

@@ -41,12 +41,6 @@
         }
 
     }
-    //[Parameter] public int id { get; set; }
-    //Character? Model = new();
-    /*protected override async Task OnInitializedAsync()
-    {
-    Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
-    }*/
 
     [Parameter] public Character Model { get; set; }
     [Parameter] public EventCallback<Character> ModelChanged { get; set; }
@@ -149,7 +143,7 @@
             <div class="section">
                 <img class="icons" src="@Assets["images/StatsIcons/afi.png"]" alt="">
                 <h1>(AFI) Afinidade: @if(edit){
-                <input type="number" class="data-input" value="@Model.Afinnity">
+                <input @bind-afi="@Model.Afinnity" @bind-afi:event="oninput" @onchange="() => ChangeModel()" type="number" class="data-input" value="@Model.Afinnity">
             }
 </h1>
             <button class="roll-dice" @onclick="(() => ActivePopup(0))"><img class="icons"

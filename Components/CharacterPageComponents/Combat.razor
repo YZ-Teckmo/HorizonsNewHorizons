@@ -7,7 +7,7 @@
     int? attack = 0;
     protected override async Task OnInitializedAsync()
     {
-        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:80/api/home/getCharacter/{id}");
         attack = Model.Strength + Model.Dexterity;
     }
 }

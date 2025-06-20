@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using OriginsNewHorizons.Models;
 using Database;
 using System.Net;
+using OriginsNewHorizons.Components.CharacterPageComponents;
+using System.Threading.Tasks;
 
 namespace OriginsNewHorizons.Controllers;
 
@@ -98,9 +100,36 @@ public class HomeController : Controller
             p.Sanity = character.Sanity;
             p.CurrentHumanity = character.CurrentHumanity;
             p.Humanity = character.Humanity;
+            p.Afinnity = character.Afinnity;
             context.SaveChanges();
         }
         return Ok();
+    }
+
+    [HttpPost("CreateHability")]
+    public async Task<IActionResult> CreateHability([FromBody] CharacterAndHability characterAndHability)
+    {
+        using (var context = new DatabaseContext())
+        {
+            context.PlayerHabilities.Add(characterAndHability.Hability);
+            context.SaveChanges();
+            
+            Character p = context.Characters.Where(x => x.Id == characterAndHability.Character.Id).Single();
+            int habId = context.PlayerHabilities.Select(x => x.Id).ToArray().Last();
+            if (p.Habilities == null)
+            {
+                p.Habilities = new();
+            }
+            p.Habilities.Add(habId);
+            context.SaveChanges();
+
+            return Ok();
+        }
+    }
+
+    async Task SaveHability(DatabaseContext context, int id)
+    {
+
     }
 
 }
