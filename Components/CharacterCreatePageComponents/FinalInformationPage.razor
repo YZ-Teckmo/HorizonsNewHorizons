@@ -12,10 +12,10 @@
     {
         await playerChanged.InvokeAsync(player);
         await FinishCreatingCharacter();
-        await Http.PostAsJsonAsync("http://localhost:5003/api/home/createCharacter", player);
-        int id = await Http.GetFromJsonAsync<int>("http://localhost:5003/api/home/GetLastCharacter");
+        await Http.PostAsJsonAsync("http://localhost:80/api/home/createCharacter", player);
+        int id = await Http.GetFromJsonAsync<int>("http://localhost:80/api/home/GetLastCharacter");
         Console.WriteLine(id);
-        NavigationManager.NavigateTo($"http://localhost:5003/character/{id}");
+        NavigationManager.NavigateTo($"http://localhost:80/character/{id}");
     }
 
     [Parameter] public bool FinishCreating { get; set; }

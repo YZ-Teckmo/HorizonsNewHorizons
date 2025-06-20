@@ -68,7 +68,10 @@
     protected override async Task OnInitializedAsync()
     {
         Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
-        habIds = Model.Habilities;
+        if(Model.Habilities != null){
+            habIds = Model.Habilities;
+        }
+        
         foreach (var h in habIds){
             amogus.Add(await Http.GetFromJsonAsync<PlayerHability>($"http://localhost:5003/api/home/GetHability/{h}"));
         }

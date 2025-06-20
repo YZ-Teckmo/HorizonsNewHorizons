@@ -13,7 +13,7 @@
     protected override async Task OnInitializedAsync()
     {
 
-        Models = await Http.GetFromJsonAsync<List<Character>>("http://localhost:5003/api/home/getAllCharacters");
+        Models = await Http.GetFromJsonAsync<List<Character>>("http://localhost:80/api/home/getAllCharacters");
     }
 }
 

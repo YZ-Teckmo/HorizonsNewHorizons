@@ -19,12 +19,12 @@
     Character? Model = new();
     protected override async Task OnInitializedAsync()
     {
-        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:80/api/home/getCharacter/{id}");
     }
 
     async Task EditCharacter(){
         Console.WriteLine("AMOGUS");
-        await Http.PostAsJsonAsync($"http://localhost:5003/api/home/EditCharacter", Model);
+        await Http.PostAsJsonAsync($"http://localhost:80/api/home/EditCharacter", Model);
     }
 
 }
