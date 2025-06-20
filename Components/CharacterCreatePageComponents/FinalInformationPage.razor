@@ -31,24 +31,25 @@
 <div class="info-box">
     <div class="name">
         <h1>Nome:</h1>
-        <input @bind-name="@player.Name" @bind-name:event="oninput" type="text" placeholder="Escreva o nome do seu personagem aqui...">
+        <input @bind-name="@player.Name" @bind-name:event="oninput" type="text"
+            placeholder="Escreva o nome do seu personagem aqui...">
     </div>
     <div class="mentor">
         <h1>Mentor:</h1>
         <select @bind="@player.Mentor" name="mentor">
             <option value="">Escola o seu mentor...</option>
             <optgroup label="Starlights">
-                <option value="teckmo">Teckmo</option>
-                <option value="shironi">Shinori</option>
-                <option value="zyreph">Zyreph</option>
-                <option value="zack">Zack</option>
-                <option value="mery">Mery</option>
-                <option value="violet">Violet</option>
+                <option value="Teckmo">Teckmo</option>
+                <option value="Shironi">Shinori</option>
+                <option value="Zyreph">Zyreph</option>
+                <option value="Zack">Zack</option>
+                <option value="Mery">Mery</option>
+                <option value="Violet">Violet</option>
             </optgroup>
             <optgroup label="Chaos Hunters">
-                <option value="trevor">Trevor</option>
-                <option value="shadow">Shadow Clouds</option>
-                <option value="sandstorm">Sandstorm</option>
+                <option value="Trevor">Trevor</option>
+                <option value="Shadow Clouds">Shadow Clouds</option>
+                <option value="Sandstorm">Sandstorm</option>
             </optgroup>
         </select>
     </div>
@@ -80,6 +81,6 @@
         </select>
     </div>
 
-    <button @onclick="()=>UpdateCurrentInfo()">Finalizar</button>
+    <button @onclick="() => UpdateCurrentInfo()">Finalizar</button>
 
 </div>

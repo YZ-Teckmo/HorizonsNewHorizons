@@ -88,6 +88,16 @@ public class HomeController : Controller
             p.Level = character.Level;
             p.PlayerColor = character.PlayerColor;
             p.TransformedColor = character.TransformedColor;
+            p.CurrentVitality = character.CurrentVitality;
+            p.Vitality = character.Vitality;
+            p.CurrentVigor = character.CurrentVigor;
+            p.Vigor = character.Vigor;
+            p.CurrentEnergyStats = character.CurrentEnergyStats;
+            p.EnergyStats = character.EnergyStats;
+            p.CurrentSanity = character.CurrentSanity;
+            p.Sanity = character.Sanity;
+            p.CurrentHumanity = character.CurrentHumanity;
+            p.Humanity = character.Humanity;
             context.SaveChanges();
         }
         return Ok();

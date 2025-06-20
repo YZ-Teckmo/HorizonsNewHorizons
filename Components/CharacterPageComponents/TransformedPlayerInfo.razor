@@ -1,12 +1,14 @@
 @using Database
+@rendermode InteractiveServer
 @inject HttpClient Http
 @code {
 
-    [Parameter] public int id { get; set; }
-    Character? Model = new();
-    protected override async Task OnInitializedAsync()
+    [Parameter] public Character Model { get; set; }
+    [Parameter] public EventCallback<Character> ModelChanged { get; set; }
+
+    async Task ChangeModel()
     {
-        Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
+        await ModelChanged.InvokeAsync(Model);
     }
 }
 
@@ -15,15 +17,15 @@
         <input class="user-img" type="image" src="../images/plusv2.png" alt="Submit">
     </div>
     <div class="player-info">
-        @if (@Model.Class == "DPS")
+        @if (@Model.Class == "dps")
         {
             <img class="player-class" src="@Assets["images/DPS.png"]" />
         }
-        @if (@Model.Class == "TANK")
+        @if (@Model.Class == "tank")
         {
             <img class="player-class" src="@Assets["images/TANK.png"]" />
         }
-        @if (@Model.Class == "SUP")
+        @if (@Model.Class == "support")
         {
             <img class="player-class" src="@Assets["images/SUP.png"]" />
         }
@@ -38,12 +40,15 @@
 <div class="colors">
     <div class="color-select">
         <h1>Cor do jogador:</h1>
-        <input type="color" class="color picker" value="#ffffff">
+        <input type="color" class="color picker" value="@Model.PlayerColor" @bind-color="@Model.PlayerColor"
+            @bind-color:event="oninput" @onchange="() => ChangeModel()">
     </div>
 
     <div class="color-select">
         <h1>Cor da transformação:</h1>
-        <input type="color" class="color picker" value="#ffffff">
+        <input type="color" class="color picker" value="@Model.TransformedColor"
+            @bind-transformedcolor="@Model.TransformedColor" @bind-transformedcolor:event="oninput"
+            @onchange="() => ChangeModel()">
     </div>
 </div>
 
@@ -51,7 +56,11 @@
     <h1>Vitalidade</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>500 / 500</h1>
+            <input type="number" class="input-left" value="@Model.CurrentVitality"
+                @bind-currentvitality="@Model.CurrentVitality" @bind-currentvitality:event="oninput"
+                @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="">
         </div>
         <div class="transformed-bar" style="width:@Model.CurrentVitality;"></div>
     </div>
@@ -59,7 +68,10 @@
     <h1>Vigor</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>500 / 500</h1>
+            <input type="number" class="input-left" value="@Model.CurrentVigor" @bind-currentvigor="@Model.CurrentVigor"
+                @bind-currentvigor:event="oninput" @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="">
         </div>
         <div class="transformed-bar" style="width:@Model.CurrentVigor;"></div>
     </div>
@@ -67,7 +79,11 @@
     <h1>Energia</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>500 / 500</h1>
+            <input type="number" class="input-left" value="@Model.CurrentEnergyStats"
+                @bind-currentenergystats="@Model.CurrentEnergyStats" @bind-currentenergystats:event="oninput"
+                @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="">
         </div>
         <div class="transformed-bar" style="width:@Model.CurrentEnergyStats;"></div>
     </div>
@@ -75,7 +91,11 @@
     <h1>Sanidade</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>500 / 500</h1>
+            <input type="number" class="input-left" value="@Model.CurrentSanity"
+                @bind-currentsanity="@Model.CurrentSanity" @bind-currentsanity:event="oninput"
+                @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="">
         </div>
         <div class="transformed-bar" style="width:@Model.CurrentSanity;"></div>
     </div>
@@ -83,7 +103,11 @@
     <h1>Humanidade</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>500 / 500</h1>
+            <input type="number" class="input-left" value="@Model.CurrentHumanity"
+                @bind-currenthumanity="@Model.CurrentHumanity" @bind-currenthumanity:event="oninput"
+                @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="">
         </div>
         <div class="transformed-bar" style="width:@Model.CurrentHumanity;"></div>
     </div>

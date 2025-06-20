@@ -381,6 +381,7 @@ h2 {
     align-self: center;
     justify-content: center;
     position: absolute;
+    display: flex;
 }
 
 .text-bar h1 {
@@ -513,4 +514,137 @@ h2 {
     margin-left: 10px;
     width: 50px;
     height: 20px;
+}
+
+.popup-hab {
+    width: 80vh;
+    border: 6px solid var(--playerColor);
+    backdrop-filter: blur(20px);
+    box-shadow: 0, 0, 10px rgba(0, 0, 0, .2);
+    border-radius: 40px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 30px;
+    animation: fadeIn 0.3s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.popup-hab button {
+    width: 200px;
+    float: right;
+}
+
+.selection {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 3px solid var(--playerColor);
+    backdrop-filter: blur(20px);
+}
+
+.selection h1 {
+    margin-bottom: 10px;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.selection input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    font-size: 22px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.selection input::placeholder {
+    color: #fff;
+    font-size: 22px;
+}
+
+.selection textarea {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    font-size: 22px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+    resize: none;
+    align-self: center;
+}
+
+.selection textarea::placeholder {
+    color: #fff;
+    font-size: 22px;
+}
+
+.selection textarea::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.selection textarea::-webkit-scrollbar-thumb {
+    background-color: var(--playerColor);
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.sky {
+    display: flex;
+}
+
+.sky h1 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.img-button {
+    width: 10px;
+    float: left;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0px;
+}
+
+.img-button img {
+    width: 50px;
+    float: left;
+}
+
+.create {
+    float: right;
+}
+
+.text-bar input {
+    width: 100%;
+    height: 100%;
+    font-size: 400px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    font-size: 22px;
+    color: #fff;
+    padding: 10px 5px 10px 15px;
+}
+
+.input-right {
+    text-align: left;
+}
+
+.input-left {
+    text-align: right;
 }

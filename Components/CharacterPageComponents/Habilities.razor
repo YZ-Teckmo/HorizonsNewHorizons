@@ -3,6 +3,7 @@
 @rendermode InteractiveServer
 @code {
     bool popup = false;
+    bool popupHab = false;
     string resultNumber = "";
     string sum = "";
     string color = "";
@@ -11,6 +12,11 @@
     {
         popup = true;
         RollDice(index);
+    }
+
+    public void ActiveHabCreation(bool active)
+    {
+        popupHab = active;
     }
 
     public void DeActivePopup()
@@ -68,26 +74,27 @@
     protected override async Task OnInitializedAsync()
     {
         Model = await Http.GetFromJsonAsync<Character>($"http://localhost:5003/api/home/getCharacter/{id}");
-        if(Model.Habilities != null){
+        if (Model.Habilities != null)
+        {
             habIds = Model.Habilities;
         }
-        
-        foreach (var h in habIds){
+
+        foreach (var h in habIds)
+        {
             amogus.Add(await Http.GetFromJsonAsync<PlayerHability>($"http://localhost:5003/api/home/GetHability/{h}"));
         }
     }
 
-    PlayerHability hability = new ();
+    PlayerHability hability = new();
 
 }
 
 <div id="HabDiv">
+    <button class="create" @onclick='() => ActiveHabCreation(true)'>Criar habilidade</button>
     <div class="sub-habilities-div">
-        @foreach (var hab in amogus) {
-            @hab.Name  
-            @hab.Description
-            @hab.Dices
-            <br/>
+        @foreach (var hab in amogus)
+        {
+
         }
     </div>
 </div>
@@ -95,8 +102,35 @@
 @if (popup == true)
 {
     <div>
-    <h2>@resultNumber</h2>
+        <h2>@resultNumber</h2>
         <button @onclick="(() => DeActivePopup())">Confirmar</button>
         <h3>@sum</h3>
+    </div>
+}
+
+@if (popupHab == true)
+{
+    <div class="popup-hab">
+        <div class="sky">
+            <button class="img-button" @onclick='() => ActiveHabCreation(false)'><img
+                    src="@Assets["images/cancel.png"]"></button>
+            <h1>Monte sua habilidade aqui!</h1>
+        </div>
+
+        <div class="selection">
+            <h1>Nome:</h1>
+            <input type="text" placeholder="Coloque o nome da sua habilidade aqui...">
+        </div>
+
+        <div class="selection">
+            <h1>Descrição:</h1>
+            <textarea placeholder="Coloque a descrição da sua habilidade aqui..."></textarea>
+        </div>
+
+        <div class="selection">
+            <h1>Efeito(Dados):</h1>
+            <input type="text" placeholder="Coloque os dados de efeito da sua habilidade aqui...">
+        </div>
+        <button @onclick='() => ActiveHabCreation(false)'>Confirmar</button>
     </div>
 }
