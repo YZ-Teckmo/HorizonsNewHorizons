@@ -35,4 +35,7 @@ app.UseAntiforgery();
 app.MapStaticAssets();
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
+var context = new DatabaseContext();
+context.Database.EnsureCreated();
+
 app.Run();
