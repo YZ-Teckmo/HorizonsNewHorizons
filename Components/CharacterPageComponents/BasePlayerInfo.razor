@@ -4,13 +4,27 @@
 @code {
     [Parameter] public Character Model { get; set; }
     [Parameter] public EventCallback<Character> ModelChanged { get; set; }
+    [Parameter] public int init { get; set; }
 
     async Task ChangeModel()
     {
         await ModelChanged.InvokeAsync(Model);
+
     }
 
     [Parameter] public bool edit { get; set; }
+
+    /* public double CalcBarPercent(int i, int t)
+    {
+
+    if (t == 0)
+    {
+    return 0;
+    }
+    return (i / t) * 100;
+    }
+    double percent = CalcBarPercent(init, max);
+    */
 }
 
 <div class="sub-player-panel">
@@ -32,8 +46,13 @@
         }
         <p>
             Nome: @Model.Name <br>
-            Level: <input type="number" value="@Model.Level" class="data-input" @bind-level="@Model.Level"
-                @bind-level:event="oninput" @onchange="() => ChangeModel()"> <br>
+            Level:
+            @if (edit)
+            {
+                <input type="number" value="@Model.Level" class="data-input" @bind-level="@Model.Level"
+                    @bind-level:event="oninput" @onchange="() => ChangeModel()">
+            }
+            <br>
             Mentor: @Model.Mentor<br>
         </p>
     </div>
@@ -45,14 +64,15 @@
     <div class="colors">
         <div class="color-select">
             <h1>Cor do jogador:</h1>
-            <input type="color" class="color picker" value="#ffffff" @bind-color="@Model.PlayerColor"
+            <input type="color" class="color picker" value="@Model.PlayerColor" @bind-color="@Model.PlayerColor"
                 @bind-color:event="oninput" @onchange="() => ChangeModel()">
         </div>
 
         <div class="color-select">
             <h1>Cor da transformação:</h1>
-            <input type="color" class="color picker" value="#ffffff" @bind-transformedcolor="@Model.TransformedColor"
-                @bind-transformedcolor:event="oninput" @onchange="() => ChangeModel()">
+            <input type="color" class="color picker" value="@Model.TransformedColor"
+                @bind-transformedcolor="@Model.TransformedColor" @bind-transformedcolor:event="oninput"
+                @onchange="() => ChangeModel()">
         </div>
     </div>
 }
@@ -61,7 +81,12 @@
     <h1>Vitalidade</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>80 / 100</h1>
+            <input type="number" class="input-left" value="@Model.CurrentVitality"
+                @bind-currentvitality="@Model.CurrentVitality" @bind-currentvitality:event="oninput"
+                @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="@Model.Vitality" @bind-vitality="@Model.Vitality"
+                @bind-vitality:event="oninput" @onchange="() => ChangeModel()">
         </div>
         <div class="life-bar" style="width:@Model.CurrentVitality;"></div>
     </div>
@@ -69,7 +94,11 @@
     <h1>Vigor</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>80 / 100</h1>
+            <input type="number" class="input-left" value="@Model.CurrentVigor" @bind-currentvigor="@Model.CurrentVigor"
+                @bind-currentvigor:event="oninput" @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="@Model.Vigor" @bind-vigor="@Model.Vigor"
+                @bind-vigor:event="oninput" @onchange="() => ChangeModel()">
         </div>
         <div class="vigor-bar" style="width:@Model.CurrentVigor;"></div>
     </div>
@@ -77,7 +106,12 @@
     <h1>Energia</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>80 / 100</h1>
+            <input type="number" class="input-left" value="@Model.CurrentEnergyStats"
+                @bind-currentenergystats="@Model.CurrentEnergyStats" @bind-currentenergystats:event="oninput"
+                @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="@Model.EnergyStats" @bind-energystats="@Model.EnergyStats"
+                @bind-energystats:event="oninput" @onchange="() => ChangeModel()">
         </div>
         <div class="energy-bar" style="width:@Model.CurrentEnergyStats;"></div>
     </div>
@@ -85,15 +119,25 @@
     <h1>Sanidade</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>80 / 100</h1>
+            <input type="number" class="input-left" value="@Model.CurrentSanity"
+                @bind-currentsanity="@Model.CurrentSanity" @bind-currentsanity:event="oninput"
+                @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="@Model.Sanity" @bind-sanity="@Model.Sanity"
+                @bind-sanity:event="oninput" @onchange="() => ChangeModel()">
         </div>
-        <div class="sanity-bar" style="width:@Model.CurrentSanity;"></div>
+        <div class="sanity-bar" style="width:@Model.CurrentSanity%;"></div>
     </div>
 
     <h1>Humanidade</h1>
     <div class="bars">
         <div class="text-bar">
-            <h1>80 / 100</h1>
+            <input type="number" class="input-left" value="@Model.CurrentHumanity"
+                @bind-currenthumanity="@Model.CurrentHumanity" @bind-currenthumanity:event="oninput"
+                @onchange="() => ChangeModel()">
+            <h1>/</h1>
+            <input type="number" class="input-right" value="@Model.Humanity" @bind-humanity="@Model.Humanity"
+                @bind-humanity:event="oninput" @onchange="() => ChangeModel()">
         </div>
         <div class="humanity-bar" style="width:@Model.CurrentHumanity;"></div>
     </div>
